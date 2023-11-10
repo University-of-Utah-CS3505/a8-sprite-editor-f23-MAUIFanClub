@@ -19,7 +19,7 @@ void UndoRedoManager::EndAction(QPixmap newPixmap)
     currentAction = {};
 }
 
-void UndoRedoManager::Undo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
+void UndoRedoManager::undo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
 {
     if (undoStack.empty()) return;
 
@@ -41,7 +41,7 @@ void UndoRedoManager::Undo(QPainter *painter, QLabel *spriteLabel, QPixmap *spri
     redoStack.push(undoAction);
 }
 
-void UndoRedoManager::Redo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
+void UndoRedoManager::redo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
 {
     if (redoStack.empty()) return;
 
