@@ -1,13 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent, int pixelSize)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, 64); // 64 is the testing size of the Sprite : 64x64
+    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize); // 64 is the testing size of the Sprite : 64x64
 }
 
 MainWindow::~MainWindow()

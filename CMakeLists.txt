@@ -25,6 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         undoredomanager.h undoredomanager.cpp
         spritecanvas.h spritecanvas.cpp
+        startupwindow.h startupwindow.cpp startupwindow.ui
+        setpixelsizewindow.h setpixelsizewindow.cpp setpixelsizewindow.ui
 
 
     )
