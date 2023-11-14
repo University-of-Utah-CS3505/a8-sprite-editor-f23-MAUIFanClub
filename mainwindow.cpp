@@ -47,3 +47,9 @@ void MainWindow::on_clearBtn_clicked()
 {
     spriteCanvas->clearCanvas();
 }
+
+void MainWindow::on_colorBtn_clicked()
+{
+    QColorDialog colorSelectionWindow;
+    QColor color = colorSelectionWindow.getColor();
+}

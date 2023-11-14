@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QColorDialog>
+#include <QColor>
 #include <stack>
 #include "undoredomanager.h"
 #include "spritecanvas.h"
@@ -30,6 +32,7 @@ private slots:
     void on_undoBtn_clicked();
     void on_redoBtn_clicked();
     void on_clearBtn_clicked();
+    void on_colorBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
