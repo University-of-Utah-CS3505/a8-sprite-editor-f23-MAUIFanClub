@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         undoredomanager.h undoredomanager.cpp
         spritecanvas.h spritecanvas.cpp
 
+        animationmanager.h animationmanager.cpp
+
 
     )
 # Define target properties for Android with Qt 6 as:
