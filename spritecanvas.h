@@ -18,6 +18,7 @@ public:
     void mouseMove(QPoint globalMousePos);
     void mouseRelease();
 
+    void setPixelColor(QColor color);
     void clearCanvas();
 
     void undoAction();
@@ -26,6 +27,7 @@ private:
     QPixmap *spritePixmap;
     QPainter painter;
     QLabel *spriteCanvas;
+    QColor pixelColor;
 
     int spriteCanvasSize;
     int spriteSize;

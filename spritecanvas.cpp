@@ -74,7 +74,7 @@ QPoint SpriteCanvas::getPixelPosition(QPoint mousePos)
 void SpriteCanvas::drawPixel(QPoint pixelPosition)
 {
     QPen p;
-    p.setColor(Qt::blue);
+    p.setColor(pixelColor);
     p.setWidth(1);
 
     painter.setPen(p);
@@ -95,6 +95,11 @@ void SpriteCanvas::clearCanvas()
     undoRedoManager->EndAction(*spritePixmap);
 
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+}
+
+void SpriteCanvas::setPixelColor(QColor color)
+{
+    pixelColor = color;
 }
 
 void SpriteCanvas::undoAction()
