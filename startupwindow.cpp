@@ -7,6 +7,8 @@ StartupWindow::StartupWindow(QWidget *parent) :
     ui(new Ui::StartupWindow)
 {
     ui->setupUi(this);
+    ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
+
 }
 
 StartupWindow::~StartupWindow()
@@ -16,7 +18,7 @@ StartupWindow::~StartupWindow()
 
 void StartupWindow::on_openProjectButton_clicked()
 {
-
+    // Should open up existing project
 }
 
 

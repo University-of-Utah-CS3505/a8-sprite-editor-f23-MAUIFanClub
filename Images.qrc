@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>return.png</file>
+        <file>up-arrow.png</file>
+        <file>arrow-down-sign-to-navigate.png</file>
+        <file>right.png</file>
+        <file>down-arrow.png</file>
+        <file>redo.png</file>
+    </qresource>
+</RCC>

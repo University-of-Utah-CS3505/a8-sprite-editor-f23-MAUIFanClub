@@ -16,19 +16,18 @@ public:
     ~setPixelSizeWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_returnButton_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pixelIncrease_Button_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_pixelDecrease_Button_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_confirmButton_clicked();
 
 private:
     Ui::setPixelSizeWindow *ui;
     void updateValues(int width, int height);
     int currentPixelSize = 4;
-    bool adjustSpinBoxValue = true;
     int currentPowerOfTwo = 2;
 };
 
