@@ -5,7 +5,9 @@
 #include <QLabel>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include <QTimer>
 #include "spritecanvas.h"
+#include "framepreviewui.h"
 
 using std::vector;
 
@@ -18,7 +20,7 @@ public:
 
     struct AnimationFrame
     {
-        QLabel *uiElement;
+        FramePreviewUi *uiElement;
         QPixmap *animationPixmap;
         QPixmap framePreviewPixmap;
     };
@@ -31,6 +33,8 @@ public slots:
     void changeDisplayedFrame(int index);
 
 private:
+    QTimer updatePreviewTimer;
+
     int frameCount;
     int framesPerSecond;
 

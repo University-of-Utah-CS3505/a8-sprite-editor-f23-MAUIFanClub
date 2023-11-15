@@ -7,14 +7,17 @@
 #include <QPointF>
 #include <QColor>
 #include <QMouseEvent>
-#include "undoredomanager.h"
 #include <QDebug>
+#include "undoredomanager.h"
+#include "framepreviewui.h"
 
 class SpriteCanvas
 {
 public:
     UndoRedoManager* undoRedoManager;
     SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
+
+    FramePreviewUi *previewFrameUi;
 
     void mousePress(QPoint globalMousePos);
     void mouseMove(QPoint globalMousePos);
