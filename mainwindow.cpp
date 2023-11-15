@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
     ui->setupUi(this);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
-    animationManager = new AnimationManager(ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
 }
 
 MainWindow::~MainWindow()
