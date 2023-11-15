@@ -28,6 +28,8 @@ public:
 
     void changePixmap(QPixmap *newPixmap);
 
+    void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
+
     void undoAction();
     void redoAction();
 private:

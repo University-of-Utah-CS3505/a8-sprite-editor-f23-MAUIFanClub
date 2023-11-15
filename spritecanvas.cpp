@@ -118,3 +118,11 @@ void SpriteCanvas::redoAction()
 {
     undoRedoManager->redo(&painter, spriteCanvas, spritePixmap, spriteCanvasSize);
 }
+
+void SpriteCanvas::displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize)
+{
+    if (actualSize)
+        spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteSize, spriteSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    else
+        spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+}

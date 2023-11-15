@@ -18,6 +18,8 @@ public:
 
     void setFrameCount(int newFrameCount);
 
+    int framesPerSecond;
+
     struct AnimationFrame
     {
         FramePreviewUi *uiElement;
