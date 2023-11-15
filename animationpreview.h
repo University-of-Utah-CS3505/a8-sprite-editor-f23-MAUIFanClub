@@ -5,10 +5,12 @@
 
 class AnimationPreview : public QObject
 {
- Q_OBJECT
+    Q_OBJECT
+
+
 
 public:
-
+AnimationPreview(QObject *parent = nullptr);
  vector<AnimationManager::AnimationFrame> framesToAnimate;
  int i_frameRate;
  explicit AnimationPreview(int frameRate, vector<AnimationManager::AnimationFrame> framesToAnimate, QObject *parent = nullptr);

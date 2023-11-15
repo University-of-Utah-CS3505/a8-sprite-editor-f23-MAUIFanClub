@@ -33,6 +33,12 @@ private slots:
     //void on_actionAnimationPreview_triggered();
     void on_StartPreview_triggered();
 
+    void on_startPreviewButton_clicked();
+
+    void on_switchSizeButton_clicked();
+
+    void on_stopPreviewButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
