@@ -18,26 +18,32 @@ FileSystem& FileSystem::operator= (FileSystem other)
 void FileSystem::loadJson(QString filepath)
 {
     QFile loadFile(filepath);
-
+    if(!loadFile.open(QIODevice::WriteOnly))
+    {
+        qWarning("Could not open file.");
+        return;
+    }
+    QByteArray loadData = loadFile.readAll();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(loadData));
+    readSpritefromJson(loadDoc.object());
 }
-void FileSystem::readSpritefromJson(QJsonObject &sprite)
+void FileSystem::readSpritefromJson(const QJsonObject &sprite)
 {
-
+    int size = sprite["frameSize"].toInt();
+    int frameCount = sprite["numFrames"].toInt();
 }
 
 void FileSystem::saveSprite(QString filename, int size)
 {
-    QTextStream out(stdout);
-
     QFile saveFile(filename);
     if(!saveFile.open(QIODevice::WriteOnly))
     {
-        qWarning("Could not open save file.");
+        qWarning("Could not save file.");
         return;
     }
 
     QJsonObject JsonSprite;
-    JsonSprite["size"] = size;
+    JsonSprite["frameSize"] = size;
     writeSpriteToJson(JsonSprite);
     QJsonDocument JsonDoc(JsonSprite);
     saveFile.write(JsonDoc.toJson());

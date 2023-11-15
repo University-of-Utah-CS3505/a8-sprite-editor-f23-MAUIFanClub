@@ -27,7 +27,7 @@ private:
     AnimationManager* animationManager;
     SpriteCanvas* spriteCanvas;
     void writeSpriteToJson(QJsonObject &sprite);
-    void readSpritefromJson(QJsonObject &sprite);
+    void readSpritefromJson(const QJsonObject &sprite);
     void writeFrameToJson(QJsonObject &frame, QPixmap pixmap, int index);
 };
 
