@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
     animationManager = new AnimationManager(ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
+   // activeTool =
 }
 
 MainWindow::~MainWindow()
@@ -20,12 +21,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    spriteCanvas->mousePress(event->globalPosition().toPoint());
+    activeTool->useTool(event, spriteCanvas, false);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    spriteCanvas->mouseMove(event->globalPosition().toPoint());
+    activeTool->useTool(event, spriteCanvas, true);
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
@@ -56,3 +57,15 @@ void MainWindow::on_colorBtn_clicked()
     QColor selectedColor = colorSelectionWindow.getColor();
     spriteCanvas->setPixelColor(selectedColor);
 }
+
+void MainWindow::on_brushToolButton_clicked()
+{
+    activeTool = new brushTool();
+}
+
+
+void MainWindow::on_eraseToolButton_clicked()
+{
+    activeTool = new eraseTool();
+}
+
