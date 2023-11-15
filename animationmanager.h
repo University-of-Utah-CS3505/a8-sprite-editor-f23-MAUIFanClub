@@ -14,19 +14,21 @@ using std::vector;
 class AnimationManager : public QObject
 {
 public:
-    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
-
-    void setFrameCount(int newFrameCount);
+    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize);
 
     struct AnimationFrame
     {
         FramePreviewUi *uiElement;
         QPixmap *animationPixmap;
-        QPixmap framePreviewPixmap;
     };
 
     vector<AnimationFrame> animationFrames;
-    int getSize();
+
+    int framesPerSecond;
+
+    void createNewFrame();
+    void removeFrame();
+
 signals:
 
 public slots:
@@ -35,8 +37,7 @@ public slots:
 private:
     QTimer updatePreviewTimer;
 
-    int frameCount;
-    int framesPerSecond;
+    int spriteSize;
 
     QScrollArea *framesPanel;
 

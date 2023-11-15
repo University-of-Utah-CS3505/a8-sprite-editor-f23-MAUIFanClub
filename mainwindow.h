@@ -10,10 +10,10 @@
 #include "undoredomanager.h"
 #include "spritecanvas.h"
 #include "animationmanager.h"
-#include <QFileDialog>
-#include <QObject>
-#include "fileSystem.h"
-
+#include "animationpreview.h"
+#include "tool_parent.h"
+#include "brushTool.h"
+#include "eraseTool.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,25 +27,35 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr, int pixelSize = 4);
     ~MainWindow();
-
-signals:
-    void loadJson(QString filepath);
-    void saveSprite(QString filepath, int size);
-
 private slots:
     void on_undoBtn_clicked();
     void on_redoBtn_clicked();
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
-    void on_actionSave_triggered();
-    void on_actionLoad_triggered();
+    //void on_actionAnimationPreview_triggered();
+    void on_StartPreview_triggered();
+
+    void on_startPreviewButton_clicked();
+
+    void on_switchSizeButton_clicked();
+
+    void on_stopPreviewButton_clicked();
+
+    void on_brushToolButton_clicked();
+
+    void on_eraseToolButton_clicked();
+
+    void on_addFrameBtn_clicked();
+
+    void on_removeFrameBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
-
+    Tool_Parent* activeTool = new eraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
-    FileSystem *filesystem;
+    AnimationPreview *animationPreview;
+
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

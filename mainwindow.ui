@@ -84,7 +84,7 @@ background-color:lightgray;
           <layout class="QVBoxLayout" name="verticalLayout_4"/>
          </widget>
         </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="addFrameBtn">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -97,7 +97,7 @@ background-color:lightgray;
           <string>Add Frame</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="removeFrameBtn">
          <property name="geometry">
           <rect>
            <x>130</x>
@@ -153,7 +153,7 @@ background-color:lightgray;
         </property>
         <property name="styleSheet">
          <string notr="true">QFrame {
-	background-color: lightgray;
+        background-color: lightgray;
 }</string>
         </property>
         <property name="midLineWidth">
@@ -268,6 +268,71 @@ background-color:gray;
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
+            <widget class="QPushButton" name="startPreviewButton">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>30</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Start Preview</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="switchSizeButton">
+                        <property name="geometry">
+                          <rect>
+                           <x>140</x>
+                           <y>30</y>
+                           <width>80</width>
+                           <height>24</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>Switch Size</string>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="eraseToolButton">
+                                     <property name="geometry">
+                                      <rect>
+                                       <x>80</x>
+                                       <y>10</y>
+                                       <width>80</width>
+                                       <height>24</height>
+                                      </rect>
+                                     </property>
+                                     <property name="text">
+                                      <string>Erase</string>
+                                     </property>
+                                    </widget>
+                                    <widget class="QPushButton" name="stopPreviewButton">
+                                                 <property name="geometry">
+                                                  <rect>
+                                                   <x>80</x>
+                                                   <y>70</y>
+                                                   <width>80</width>
+                                                   <height>24</height>
+                                                  </rect>
+                                                 </property>
+                                                 <property name="text">
+                                                  <string>Stop Preview</string>
+                                                 </property>
+                                                </widget>
+                                                <widget class="QPushButton" name="brushToolButton">
+                                                             <property name="geometry">
+                                                              <rect>
+                                                               <x>80</x>
+                                                               <y>40</y>
+                                                               <width>80</width>
+                                                               <height>24</height>
+                                                              </rect>
+                                                             </property>
+                                                             <property name="text">
+                                                              <string>Brush</string>
+                                                             </property>
+                                                            </widget>
            </widget>
           </item>
           <item>
@@ -404,38 +469,25 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSave">
+   <widget class="QMenu" name="menuTesting">
     <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionSave"/>
-    <addaction name="actionLoad"/>
-   </widget>
-   <widget class="QMenu" name="menuPreview_Animation">
-    <property name="title">
-     <string>Preview Animation</string>
+     <string>Save</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuAnimation_Settings">
+   <widget class="QMenu" name="menuLoad">
     <property name="title">
-     <string>Animation Settings</string>
+     <string>Load</string>
     </property>
    </widget>
-   <addaction name="menuSave"/>
-   <addaction name="menuPreview_Animation"/>
-   <addaction name="menuAnimation_Settings"/>
+   <addaction name="menuTesting"/>
+   <addaction name="menuLoad"/>
   </widget>
-  <action name="actionSave">
+  <action name="StartPreview">
    <property name="text">
-    <string>Save</string>
-   </property>
-  </action>
-  <action name="actionLoad">
-   <property name="text">
-    <string>Load</string>
+    <string>Start Preview</string>
    </property>
   </action>
  </widget>
