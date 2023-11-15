@@ -19,6 +19,7 @@ signals:
 
 private:
     void writeSpriteToJson(QJsonObject &sprite);
+    void readSpritefromJson(QJsonObject &sprite);
 };
 
 #endif // FILESYSTEM_H
