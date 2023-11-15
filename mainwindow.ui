@@ -63,7 +63,7 @@ background-color:lightgray;
            <x>9</x>
            <y>9</y>
            <width>241</width>
-           <height>621</height>
+           <height>591</height>
           </rect>
          </property>
          <property name="widgetResizable">
@@ -78,11 +78,37 @@ background-color:lightgray;
             <x>0</x>
             <y>0</y>
             <width>239</width>
-            <height>619</height>
+            <height>589</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4"/>
          </widget>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>610</y>
+           <width>111</width>
+           <height>24</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Add Frame</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>610</y>
+           <width>111</width>
+           <height>24</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Remove Frame</string>
+         </property>
         </widget>
        </widget>
       </item>
