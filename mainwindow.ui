@@ -282,57 +282,57 @@ background-color:gray;
              </property>
             </widget>
             <widget class="QPushButton" name="switchSizeButton">
-                        <property name="geometry">
-                          <rect>
-                           <x>140</x>
-                           <y>30</y>
-                           <width>80</width>
-                           <height>24</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>Switch Size</string>
-                         </property>
-                        </widget>
-                        <widget class="QPushButton" name="eraseToolButton">
-                                     <property name="geometry">
-                                      <rect>
-                                       <x>80</x>
-                                       <y>10</y>
-                                       <width>80</width>
-                                       <height>24</height>
-                                      </rect>
-                                     </property>
-                                     <property name="text">
-                                      <string>Erase</string>
-                                     </property>
-                                    </widget>
-                                    <widget class="QPushButton" name="stopPreviewButton">
-                                                 <property name="geometry">
-                                                  <rect>
-                                                   <x>80</x>
-                                                   <y>70</y>
-                                                   <width>80</width>
-                                                   <height>24</height>
-                                                  </rect>
-                                                 </property>
-                                                 <property name="text">
-                                                  <string>Stop Preview</string>
-                                                 </property>
-                                                </widget>
-                                                <widget class="QPushButton" name="brushToolButton">
-                                                             <property name="geometry">
-                                                              <rect>
-                                                               <x>80</x>
-                                                               <y>40</y>
-                                                               <width>80</width>
-                                                               <height>24</height>
-                                                              </rect>
-                                                             </property>
-                                                             <property name="text">
-                                                              <string>Brush</string>
-                                                             </property>
-                                                            </widget>
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>30</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Switch Size</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="eraseToolButton">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>10</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Erase</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="stopPreviewButton">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>70</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Stop Preview</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="brushToolButton">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>40</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Brush</string>
+             </property>
+            </widget>
            </widget>
           </item>
           <item>
@@ -469,25 +469,31 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTesting">
+   <widget class="QMenu" name="FileMenu">
     <property name="title">
-     <string>Save</string>
+     <string>File</string>
     </property>
+    <addaction name="actionSave"/>
+    <addaction name="actionLoad"/>
    </widget>
-   <widget class="QMenu" name="menuLoad">
-    <property name="title">
-     <string>Load</string>
-    </property>
-   </widget>
-   <addaction name="menuTesting"/>
-   <addaction name="menuLoad"/>
+   <addaction name="FileMenu"/>
   </widget>
   <action name="StartPreview">
    <property name="text">
     <string>Start Preview</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
    </property>
   </action>
  </widget>

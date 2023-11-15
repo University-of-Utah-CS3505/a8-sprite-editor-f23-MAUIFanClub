@@ -7,6 +7,7 @@
 #include <QColorDialog>
 #include <QColor>
 #include <stack>
+#include <QFileDialog>
 #include "undoredomanager.h"
 #include "spritecanvas.h"
 #include "animationmanager.h"
@@ -14,6 +15,7 @@
 #include "tool_parent.h"
 #include "brushTool.h"
 #include "eraseTool.h"
+#include "fileSystem.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -49,11 +51,16 @@ private slots:
 
     void on_removeFrameBtn_clicked();
 
+    void on_actionSave_triggered();
+
+    void on_actionLoad_triggered();
+
 private:
     Ui::MainWindow *ui;
     Tool_Parent* activeTool = new eraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
+    FileSystem *fileSystem;
     AnimationPreview *animationPreview;
 
     void mousePressEvent(QMouseEvent *event);

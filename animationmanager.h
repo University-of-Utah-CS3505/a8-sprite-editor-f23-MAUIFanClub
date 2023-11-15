@@ -28,7 +28,7 @@ public:
 
     void createNewFrame();
     void removeFrame();
-
+    int getSize();
 signals:
 
 public slots:
