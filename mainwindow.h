@@ -9,6 +9,7 @@
 #include <stack>
 #include "undoredomanager.h"
 #include "spritecanvas.h"
+#include "animationmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,11 +24,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr, int pixelSize = 4);
     ~MainWindow();
-
-//    QPainter painter;
-
-//    // Draws a pixel at a given position
-//    void drawPixel(QPoint pixelPosition);
 private slots:
     void on_undoBtn_clicked();
     void on_redoBtn_clicked();
@@ -38,17 +34,10 @@ private:
     Ui::MainWindow *ui;
 
     SpriteCanvas *spriteCanvas;
+    AnimationManager *animationManager;
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-
-//    bool mouseOnSpriteCanvas(QPoint globalMousePos);
-//    QPoint getMouseLocalPos(QPoint globalMousePos, QPoint spriteCanvasPos);
-//    QPoint getPixelPosition(QPoint mousePos);
-
-//    bool drawing;
-
-//    UndoRedoManager* undoRedoManager;
 };
 #endif // MAINWINDOW_H
