@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     , ui(new Ui::MainWindow)
     , spriteSize(spriteSize)
 {
-    connect(this, &MainWindow::saveSprite, &filesystem, &FileSystem::saveSprite);
-    connect(this, &MainWindow::loadJson, &filesystem, &FileSystem::loadJson);
+
     ui->setupUi(this);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
     animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, 3, 4, spriteSize); // 1 Is tmp frame count | 4 is tmp frame rate
+    filesystem = new FileSystem(animationManager, spriteCanvas);
 }
 
 MainWindow::~MainWindow()
@@ -62,11 +62,12 @@ void MainWindow::on_colorBtn_clicked()
 
 void MainWindow::on_actionSave_triggered()
 {
+
     QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit saveSprite(filename, spriteSize);
+    filesystem->saveSprite(filename, spriteSize);
 }
 void MainWindow::on_actionLoad_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit loadJson(filename);
+    filesystem->loadJson(filename);
 }

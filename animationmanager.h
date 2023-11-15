@@ -11,7 +11,7 @@
 
 using std::vector;
 
-class AnimationManager
+class AnimationManager : public QObject
 {
 public:
     AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);

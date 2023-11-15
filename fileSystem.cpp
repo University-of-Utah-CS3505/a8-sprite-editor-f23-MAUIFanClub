@@ -1,10 +1,20 @@
 #include "fileSystem.h"
-
+#include <QTextStream>
 FileSystem::FileSystem(AnimationManager* animManager, SpriteCanvas* spriteCanv)
 {
-    am = animManager;
-    sc = spriteCanv;
+    animationManager = animManager;
+    spriteCanvas = spriteCanv;
 }
+
+FileSystem::FileSystem(){}
+
+FileSystem& FileSystem::operator= (FileSystem other)
+{
+    std::swap(animationManager, other.animationManager);
+    std::swap(spriteCanvas, other.spriteCanvas);
+    return *this;
+}
+
 void FileSystem::loadJson(QString filepath)
 {
     QFile loadFile(filepath);
@@ -17,6 +27,8 @@ void FileSystem::readSpritefromJson(QJsonObject &sprite)
 
 void FileSystem::saveSprite(QString filename, int size)
 {
+    QTextStream out(stdout);
+
     QFile saveFile(filename);
     if(!saveFile.open(QIODevice::WriteOnly))
     {
@@ -33,11 +45,11 @@ void FileSystem::saveSprite(QString filename, int size)
 
 void FileSystem::writeSpriteToJson(QJsonObject &sprite)
 {
-    sprite["numFrames"] = am->getSize();
+    sprite["numFrames"] = animationManager->getSize();
     QJsonArray frames;
 
     int frameIndex = 0;
-    foreach(AnimationManager::AnimationFrame frame, am->animationFrames){
+    foreach(AnimationManager::AnimationFrame frame, animationManager->animationFrames){
         QJsonObject frameObject;
         writeFrameToJson(frameObject, *frame.animationPixmap, frameIndex);
         frames.append(frameObject);

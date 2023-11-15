@@ -45,7 +45,7 @@ private:
 
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
-    FileSystem filesystem;
+    FileSystem *filesystem;
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

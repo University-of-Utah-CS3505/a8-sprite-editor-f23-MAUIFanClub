@@ -16,6 +16,7 @@ class FileSystem : public QObject
 public:
     FileSystem();
     FileSystem(AnimationManager*, SpriteCanvas*);
+    FileSystem& operator= (FileSystem other);
 
 public slots:
     void loadJson(QString filepath);
@@ -23,8 +24,8 @@ public slots:
 signals:
 
 private:
-    AnimationManager* am;
-    SpriteCanvas* sc;
+    AnimationManager* animationManager;
+    SpriteCanvas* spriteCanvas;
     void writeSpriteToJson(QJsonObject &sprite);
     void readSpritefromJson(QJsonObject &sprite);
     void writeFrameToJson(QJsonObject &frame, QPixmap pixmap, int index);
