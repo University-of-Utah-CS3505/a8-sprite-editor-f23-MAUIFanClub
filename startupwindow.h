@@ -2,6 +2,9 @@
 #define STARTUPWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QObject>
+#include "fileSystem.h"
 
 namespace Ui {
 class StartupWindow;
@@ -14,6 +17,9 @@ class StartupWindow : public QMainWindow
 public:
     explicit StartupWindow(QWidget *parent = nullptr);
     ~StartupWindow();
+    void ConnectFileSystem();
+signals:
+    void loadJson(QString filepath);
 
 private slots:
     void on_openProjectButton_clicked();
@@ -22,6 +28,7 @@ private slots:
 
 private:
     Ui::StartupWindow *ui;
+    FileSystem filesystem;
 };
 
 #endif // STARTUPWINDOW_H
