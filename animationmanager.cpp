@@ -14,10 +14,10 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *fram
     {
         AnimationFrame newFrame;
 
-        QPixmap animationPixmap(spriteSize, spriteSize);
-        animationPixmap.fill(Qt::lightGray);
+        QPixmap *animationPixmap = new QPixmap(spriteSize, spriteSize);
+        animationPixmap->fill(Qt::lightGray);
 
-        QPixmap framePreviewPixmap = animationPixmap.scaled(QSize(128,128));
+        QPixmap framePreviewPixmap = animationPixmap->scaled(QSize(128,128));
 
         // Ui Frame Element Creation
         FramePreviewUi *frameUiElement = new FramePreviewUi(i);
@@ -38,6 +38,8 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *fram
 
         this->framesPanel->widget()->layout()->addWidget(frameUiElement);
     }
+
+    changeDisplayedFrame(0);
 }
 
 void AnimationManager::setFrameCount(int newFrameCount)

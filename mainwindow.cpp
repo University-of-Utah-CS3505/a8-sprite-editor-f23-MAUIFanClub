@@ -1,18 +1,15 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-
-MainWindow::MainWindow(QWidget *parent, int pixelSize)
+MainWindow::MainWindow(QWidget *parent, int spriteSize)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , spriteSize(spriteSize)
 {
-    spriteSize = pixelSize;
-    connect(this, &MainWindow::saveSprite, &filesystem, &FileSystem::saveSprite);
-    connect(this, &MainWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
 
-    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
-    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
+    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, 3, 4, spriteSize); // 1 Is tmp frame count | 4 is tmp frame rate
 }
 
 MainWindow::~MainWindow()
@@ -60,19 +57,3 @@ void MainWindow::on_colorBtn_clicked()
     QColor selectedColor = colorSelectionWindow.getColor();
     spriteCanvas->setPixelColor(selectedColor);
 }
-
-void MainWindow::on_actionSave_triggered()
-{
-
-    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit saveSprite(filename, spriteSize);
-}
-
-
-void MainWindow::on_actionLoad_triggered()
-{
-
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit loadJson(filename);
-}
-
