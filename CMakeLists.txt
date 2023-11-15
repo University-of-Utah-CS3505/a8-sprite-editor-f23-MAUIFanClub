@@ -15,7 +15,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
-        animationpreview.cpp
         mainwindow.h
         mainwindow.ui
 )
@@ -36,12 +35,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         animationmanager.h animationmanager.cpp
         framepreviewui.h framepreviewui.cpp
-
-        tool_parent.h tool_parent.cpp
-        erasetool.h erasetool.cpp
-        brushtool.h brushtool.cpp
-
-        animationpreview.h animationpreview.cpp
 
 
     )
