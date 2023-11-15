@@ -18,23 +18,23 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 
 void SpriteCanvas::mousePress(QPoint globalMousePos)
 {
-    QPoint mousePos = getMouseLocalPos(globalMousePos, spriteCanvas->pos());
+    QPoint localMousePos = spriteCanvas->mapFromGlobal(globalMousePos);
 
-    if (!mouseOnSpriteCanvas(mousePos)) return;
+    if (!mouseOnSpriteCanvas(localMousePos)) return;
 
     undoRedoManager->StartAction(*spritePixmap);
     drawing = true;
 
-    drawPixel(getPixelPosition(mousePos));
+    drawPixel(getPixelPosition(localMousePos));
 }
 
 void SpriteCanvas::mouseMove(QPoint globalMousePos)
 {
-    QPoint mousePos = getMouseLocalPos(globalMousePos, spriteCanvas->pos());
+    QPoint localMousePos = spriteCanvas->mapFromGlobal(globalMousePos);
 
-    if (!mouseOnSpriteCanvas(mousePos) || !drawing) return;
+    if (!mouseOnSpriteCanvas(localMousePos) || !drawing) return;
 
-    drawPixel(getPixelPosition(mousePos));
+    drawPixel(getPixelPosition(localMousePos));
 }
 
 void SpriteCanvas::mouseRelease()
@@ -43,15 +43,8 @@ void SpriteCanvas::mouseRelease()
 
     undoRedoManager->EndAction(*spritePixmap);
     drawing = false;
-}
 
-QPoint SpriteCanvas::getMouseLocalPos(QPoint globalMousePos, QPoint spriteCanvasPos)
-{
-    QPoint mousePos;
-    mousePos.setX(globalMousePos.x() - spriteCanvasPos.x());
-    mousePos.setY(globalMousePos.y() - spriteCanvasPos.y());
-
-    return mousePos;
+    lastDrawnPixel = QPoint(-1,-1);
 }
 
 bool SpriteCanvas::mouseOnSpriteCanvas(QPoint localMousePos)
@@ -62,17 +55,18 @@ bool SpriteCanvas::mouseOnSpriteCanvas(QPoint localMousePos)
 
 QPoint SpriteCanvas::getPixelPosition(QPoint mousePos)
 {
-    float pixelSize = (spriteCanvasSize/spriteSize);
+    float pixelSize = (spriteCanvasSize / spriteSize);
 
-    QPoint pixelPos;
-    pixelPos.setX((mousePos.x() / pixelSize));
-    pixelPos.setY((mousePos.y() / pixelSize));
+    QPoint pixelPos((mousePos.x() / pixelSize),(mousePos.y() / pixelSize));
 
     return pixelPos;
 }
 
 void SpriteCanvas::drawPixel(QPoint pixelPosition)
 {
+    if (pixelPosition == lastDrawnPixel) return;
+
+    // Pen used for drawing on painter
     QPen p;
     p.setColor(pixelColor);
     p.setWidth(1);
@@ -81,6 +75,8 @@ void SpriteCanvas::drawPixel(QPoint pixelPosition)
 
     // Draws to the sprite
     painter.drawPoint(pixelPosition);
+
+    lastDrawnPixel = pixelPosition;
 
     // Updates the paintLabel image to the new canvas.
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));

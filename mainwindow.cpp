@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize); // 64 is the testing size of the Sprite : 64x64
+
+    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
+    animationManager = new AnimationManager(ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
 }
 
 MainWindow::~MainWindow()
@@ -18,12 +20,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    spriteCanvas->mousePress(event->pos());
+    spriteCanvas->mousePress(event->globalPosition().toPoint());
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    spriteCanvas->mouseMove(event->pos());
+    spriteCanvas->mouseMove(event->globalPosition().toPoint());
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
