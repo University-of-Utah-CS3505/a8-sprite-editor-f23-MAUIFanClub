@@ -4,6 +4,10 @@ void FileSystem::loadJson(QString filepath)
     //QFile loadFile(filepath);
 
 }
+void FileSystem::readSpritefromJson(QJsonObject &sprite)
+{
+
+}
 
 void FileSystem::saveSprite(QString filename)
 {
