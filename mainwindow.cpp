@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     ui->setupUi(this);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
-    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, 3, 4, spriteSize); // 1 Is tmp frame count | 4 is tmp frame rate
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize);
 }
 
 MainWindow::~MainWindow()
@@ -57,3 +57,14 @@ void MainWindow::on_colorBtn_clicked()
     QColor selectedColor = colorSelectionWindow.getColor();
     spriteCanvas->setPixelColor(selectedColor);
 }
+
+void MainWindow::on_addFrameBtn_clicked()
+{
+    animationManager->createNewFrame();
+}
+
+void MainWindow::on_removeFrameBtn_clicked()
+{
+    animationManager->removeFrame();
+}
+

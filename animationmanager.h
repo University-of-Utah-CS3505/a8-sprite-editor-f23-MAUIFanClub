@@ -14,7 +14,7 @@ using std::vector;
 class AnimationManager : public QObject
 {
 public:
-    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
+    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize);
 
     void setFrameCount(int newFrameCount);
 
@@ -22,10 +22,12 @@ public:
     {
         FramePreviewUi *uiElement;
         QPixmap *animationPixmap;
-        QPixmap framePreviewPixmap;
     };
 
     vector<AnimationFrame> animationFrames;
+
+    void createNewFrame();
+    void removeFrame();
 
 signals:
 
@@ -35,8 +37,7 @@ public slots:
 private:
     QTimer updatePreviewTimer;
 
-    int frameCount;
-    int framesPerSecond;
+    int spriteSize;
 
     QScrollArea *framesPanel;
 

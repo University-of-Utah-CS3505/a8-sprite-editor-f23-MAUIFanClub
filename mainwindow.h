@@ -30,6 +30,10 @@ private slots:
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
 
+    void on_addFrameBtn_clicked();
+
+    void on_removeFrameBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 

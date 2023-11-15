@@ -84,7 +84,7 @@ background-color:lightgray;
           <layout class="QVBoxLayout" name="verticalLayout_4"/>
          </widget>
         </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="addFrameBtn">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -97,7 +97,7 @@ background-color:lightgray;
           <string>Add Frame</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="removeFrameBtn">
          <property name="geometry">
           <rect>
            <x>130</x>
