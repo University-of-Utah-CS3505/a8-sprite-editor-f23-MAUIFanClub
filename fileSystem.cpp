@@ -1,4 +1,5 @@
 #include "fileSystem.h"
+#include "qforeach.h"
 #include <QTextStream>
 FileSystem::FileSystem(AnimationManager* animManager, SpriteCanvas* spriteCanv)
 {
@@ -31,6 +32,21 @@ void FileSystem::readSpritefromJson(const QJsonObject &sprite)
 {
     int size = sprite["frameSize"].toInt();
     int frameCount = sprite["numFrames"].toInt();
+
+    QLabel *tempLabel = spriteCanvas->getSpriteCanvas();
+    spriteCanvas = new SpriteCanvas(tempLabel, size);
+
+    QScrollArea *tempScroll = animationManager->getFramesPanel();
+    animationManager = new AnimationManager(spriteCanvas, tempScroll, size);
+
+    QJsonArray frameArray = sprite["frames"].toArray();
+
+    QImage tempImage(size, size, QImage::Format_ARGB32);
+
+    for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
+    {
+        QJsonArray framevalues = frameArray[frameIndex].toArray();
+    }
 }
 
 void FileSystem::saveSprite(QString filename, int size)
@@ -51,7 +67,7 @@ void FileSystem::saveSprite(QString filename, int size)
 
 void FileSystem::writeSpriteToJson(QJsonObject &sprite)
 {
-    sprite["numFrames"] = animationManager->getSize();
+    sprite["frameCount"] = animationManager->getSize();
     QJsonArray frames;
 
     int frameIndex = 0;

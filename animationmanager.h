@@ -27,8 +27,10 @@ public:
     int framesPerSecond;
 
     void createNewFrame();
+    void createNewFrame(QPixmap*);
     void removeFrame();
     int getSize();
+    QScrollArea *getFramesPanel();
 signals:
 
 public slots:

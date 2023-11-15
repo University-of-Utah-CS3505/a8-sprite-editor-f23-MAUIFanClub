@@ -157,3 +157,8 @@ void SpriteCanvas::displayAnimationFrame(QPixmap *animationFramePixmap, bool act
     else
         spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
+
+QLabel *SpriteCanvas::getSpriteCanvas()
+{
+    return spriteCanvas;
+}

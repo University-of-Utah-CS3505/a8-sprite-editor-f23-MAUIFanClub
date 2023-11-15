@@ -40,6 +40,33 @@ void AnimationManager::createNewFrame()
     framesPanel->widget()->layout()->addWidget(frameUiElement);
 }
 
+void AnimationManager::createNewFrame(QPixmap *map)
+{
+    AnimationFrame newFrame;
+
+    int index = animationFrames.size();
+
+    QPixmap *animationPixmap = map;
+
+    // Ui Frame Element Creation
+    FramePreviewUi *frameUiElement = new FramePreviewUi(index);
+    frameUiElement->setMinimumHeight(128);
+    frameUiElement->setMaximumHeight(128);
+    frameUiElement->setMinimumWidth(128);
+    frameUiElement->setMaximumWidth(128);
+    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128,128)));
+
+    QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
+
+    // Assignment of variables for newFrame
+    newFrame.animationPixmap = animationPixmap;
+    newFrame.uiElement = frameUiElement;
+
+    animationFrames.push_back(newFrame);
+
+    framesPanel->widget()->layout()->addWidget(frameUiElement);
+}
+
 void AnimationManager::removeFrame()
 {
     if (animationFrames.size() == 1) return;
@@ -63,4 +90,9 @@ void AnimationManager::changeDisplayedFrame(int index)
 int AnimationManager::getSize()
 {
     return animationFrames.size();
+}
+
+QScrollArea *AnimationManager::getFramesPanel()
+{
+    return framesPanel;
 }

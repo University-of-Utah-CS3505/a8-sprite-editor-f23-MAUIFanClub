@@ -39,6 +39,7 @@ public:
 
     void undoAction();
     void redoAction();
+    QLabel* getSpriteCanvas();
 private:
     QPixmap *spritePixmap;
     QPainter painter;
