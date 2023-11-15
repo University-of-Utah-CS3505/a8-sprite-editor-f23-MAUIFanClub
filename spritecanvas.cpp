@@ -45,6 +45,8 @@ void SpriteCanvas::mouseRelease()
     drawing = false;
 
     lastDrawnPixel = QPoint(-1,-1);
+
+    previewFrameUi->setPixmap(spritePixmap->scaled(QSize(128,128)));
 }
 
 bool SpriteCanvas::mouseOnSpriteCanvas(QPoint localMousePos)

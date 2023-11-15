@@ -1,5 +1,4 @@
 #include "animationmanager.h"
-#include "framepreviewui.h"
 
 AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize)
 {
@@ -27,6 +26,8 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *fram
         frameUiElement->setMaximumWidth(128);
         frameUiElement->setPixmap(framePreviewPixmap);
 
+        frameUiElement->setPixmap(animationPixmap->scaled(QSize(128,128)));
+
         QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
 
         // Assignment of variables for newFrame
@@ -49,5 +50,6 @@ void AnimationManager::setFrameCount(int newFrameCount)
 
 void AnimationManager::changeDisplayedFrame(int index)
 {
+    spriteCanvas->previewFrameUi = animationFrames[index].uiElement;
     spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
 }
