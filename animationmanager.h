@@ -16,10 +16,6 @@ class AnimationManager : public QObject
 public:
     AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize);
 
-    void setFrameCount(int newFrameCount);
-
-    int framesPerSecond;
-
     struct AnimationFrame
     {
         FramePreviewUi *uiElement;
@@ -27,6 +23,8 @@ public:
     };
 
     vector<AnimationFrame> animationFrames;
+
+    int framesPerSecond;
 
     void createNewFrame();
     void removeFrame();
