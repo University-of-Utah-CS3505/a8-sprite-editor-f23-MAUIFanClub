@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     , ui(new Ui::MainWindow)
     , spriteSize(spriteSize)
 {
+    connect(this, &MainWindow::saveSprite, &filesystem, &FileSystem::saveSprite);
+    connect(this, &MainWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
@@ -56,4 +58,15 @@ void MainWindow::on_colorBtn_clicked()
     QColorDialog colorSelectionWindow;
     QColor selectedColor = colorSelectionWindow.getColor();
     spriteCanvas->setPixelColor(selectedColor);
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
+    emit saveSprite(filename, spriteSize);
+}
+void MainWindow::on_actionLoad_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
+    emit loadJson(filename);
 }
