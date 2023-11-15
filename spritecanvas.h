@@ -23,6 +23,8 @@ public:
     void setPixelColor(QColor color);
     void clearCanvas();
 
+    void changePixmap(QPixmap newPixmap);
+
     void undoAction();
     void redoAction();
 private:

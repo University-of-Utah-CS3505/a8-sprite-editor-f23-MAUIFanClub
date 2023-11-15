@@ -34,6 +34,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
         animationmanager.h animationmanager.cpp
+        framepreviewui.h framepreviewui.cpp
 
 
     )

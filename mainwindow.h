@@ -49,5 +49,8 @@ private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
+    int spriteSize;
+    int frameCount;
 };
 #endif // MAINWINDOW_H

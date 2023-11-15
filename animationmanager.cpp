@@ -1,10 +1,12 @@
 #include "animationmanager.h"
+#include "framepreviewui.h"
 
-AnimationManager::AnimationManager(QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize)
+AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize)
 {
     this->frameCount = frameCount;
     this->framesPerSecond = framesPerSecond;
     this->framesPanel = framesPanel;
+    this->spriteCanvas = spriteCanvas;
 
     animationFrames = vector<AnimationFrame>(0);
 
@@ -18,12 +20,14 @@ AnimationManager::AnimationManager(QScrollArea *framesPanel, int frameCount, int
         QPixmap framePreviewPixmap = animationPixmap.scaled(QSize(128,128));
 
         // Ui Frame Element Creation
-        QLabel *frameUiElement = new QLabel();
+        FramePreviewUi *frameUiElement = new FramePreviewUi(i);
         frameUiElement->setMinimumHeight(128);
         frameUiElement->setMaximumHeight(128);
         frameUiElement->setMinimumWidth(128);
         frameUiElement->setMaximumWidth(128);
         frameUiElement->setPixmap(framePreviewPixmap);
+
+        QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
 
         // Assignment of variables for newFrame
         newFrame.animationPixmap = animationPixmap;
@@ -39,4 +43,9 @@ AnimationManager::AnimationManager(QScrollArea *framesPanel, int frameCount, int
 void AnimationManager::setFrameCount(int newFrameCount)
 {
     animationFrames.resize(newFrameCount);
+}
+
+void AnimationManager::changeDisplayedFrame(int index)
+{
+    spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
 }
