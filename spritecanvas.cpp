@@ -10,13 +10,12 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
-
     undoRedoManager = new UndoRedoManager();
 
     this->spriteCanvas = spriteCanvas;
 }
 
-void SpriteCanvas::mousePress(QPoint globalMousePos)
+void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
 {
     QPoint localMousePos = spriteCanvas->mapFromGlobal(globalMousePos);
 
@@ -24,17 +23,31 @@ void SpriteCanvas::mousePress(QPoint globalMousePos)
 
     undoRedoManager->StartAction(*spritePixmap);
     drawing = true;
+    if(isDraw)
+    {
+        drawPixel(getPixelPosition(localMousePos));
+    }
+    else
+    {
+        erasePixel(getPixelPosition(localMousePos));
+    }
 
-    drawPixel(getPixelPosition(localMousePos));
 }
 
-void SpriteCanvas::mouseMove(QPoint globalMousePos)
+void SpriteCanvas::mouseMove(QPoint globalMousePos, bool isDraw)
 {
     QPoint localMousePos = spriteCanvas->mapFromGlobal(globalMousePos);
 
     if (!mouseOnSpriteCanvas(localMousePos) || !drawing) return;
+    if(isDraw)
+    {
+        drawPixel(getPixelPosition(localMousePos));
+    }
+    else
+    {
+        erasePixel(getPixelPosition(localMousePos));
+    }
 
-    drawPixel(getPixelPosition(localMousePos));
 }
 
 void SpriteCanvas::mouseRelease()
@@ -81,7 +94,25 @@ void SpriteCanvas::drawPixel(QPoint pixelPosition)
     // Updates the paintLabel image to the new canvas.
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
+void SpriteCanvas::erasePixel(QPoint pixelPosition)
+{
+    if (pixelPosition == lastDrawnPixel) return;
 
+    // Pen used for drawing on painter
+    QPen p;
+    p.setColor(Qt::lightGray);
+    p.setWidth(1);
+
+    painter.setPen(p);
+
+    // Draws to the sprite
+    painter.drawPoint(pixelPosition);
+
+    lastDrawnPixel = pixelPosition;
+
+    // Updates the paintLabel image to the new canvas.
+    spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+}
 void SpriteCanvas::clearCanvas()
 {
     undoRedoManager->StartAction(*spritePixmap);

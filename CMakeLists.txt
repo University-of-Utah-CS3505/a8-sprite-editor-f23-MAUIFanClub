@@ -33,6 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
         animationmanager.h animationmanager.cpp
+        tool_parent.h tool_parent.cpp
+        erasetool.h erasetool.cpp
+        brushtool.h brushtool.cpp
 
         animationpreview.h animationpreview.cpp
 

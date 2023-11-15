@@ -11,7 +11,9 @@
 #include "spritecanvas.h"
 #include "animationmanager.h"
 #include "animationpreview.h"
-
+#include "tool_parent.h"
+#include "brushTool.h"
+#include "eraseTool.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -39,9 +41,13 @@ private slots:
 
     void on_stopPreviewButton_clicked();
 
+    void on_brushToolButton_clicked();
+
+    void on_eraseToolButton_clicked();
+
 private:
     Ui::MainWindow *ui;
-
+    Tool_Parent* activeTool = new eraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
     AnimationPreview *animationPreview;

@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
     AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
     connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);
     connect(ui->startPreviewButton, &QPushButton::clicked, animationPreview, &AnimationPreview::startPreview);
-    //connect(ui->StartPreview, &QAction::triggered, spriteCanvas, &SpriteCanvas::changePixmap);
+
 }
 
 MainWindow::~MainWindow()
@@ -24,12 +24,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    spriteCanvas->mousePress(event->globalPosition().toPoint());
+    activeTool->useTool(event, spriteCanvas, false);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    spriteCanvas->mouseMove(event->globalPosition().toPoint());
+    activeTool->useTool(event, spriteCanvas, true);
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
@@ -64,7 +64,6 @@ void MainWindow::on_colorBtn_clicked()
 }
 
 
-
 /* -- Preview Button Press Events -- */
 
 void MainWindow::on_StartPreview_triggered()
@@ -88,5 +87,14 @@ void MainWindow::on_switchSizeButton_clicked()
 void MainWindow::on_stopPreviewButton_clicked()
 {
 
+void MainWindow::on_brushToolButton_clicked()
+{
+    activeTool = new brushTool();
+}
+
+
+void MainWindow::on_eraseToolButton_clicked()
+{
+    activeTool = new eraseTool();
 }
 
