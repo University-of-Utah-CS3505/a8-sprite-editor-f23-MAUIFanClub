@@ -378,18 +378,15 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTesting">
+   <widget class="QMenu" name="menuSave">
     <property name="title">
-     <string>Save</string>
+     <string>File</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuLoad">
-    <property name="title">
-     <string>Load</string>
-    </property>
+    <addaction name="actionSave"/>
+    <addaction name="actionLoad"/>
    </widget>
    <widget class="QMenu" name="menuPreview_Animation">
     <property name="title">
@@ -401,11 +398,20 @@ background-color:gray;
      <string>Animation Settings</string>
     </property>
    </widget>
-   <addaction name="menuTesting"/>
-   <addaction name="menuLoad"/>
+   <addaction name="menuSave"/>
    <addaction name="menuPreview_Animation"/>
    <addaction name="menuAnimation_Settings"/>
   </widget>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

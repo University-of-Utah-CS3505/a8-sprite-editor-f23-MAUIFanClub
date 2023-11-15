@@ -3,6 +3,10 @@
 
 #include <QObject>
 #include <QFile>
+#include <QDebug>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 class FileSystem : public QObject
 {
@@ -14,7 +18,7 @@ public slots:
 signals:
 
 private:
-
+    void writeSpriteToJson(QJsonObject &sprite);
 };
 
 #endif // FILESYSTEM_H
