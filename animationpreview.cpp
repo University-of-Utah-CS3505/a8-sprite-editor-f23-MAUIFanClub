@@ -8,8 +8,14 @@
 //{
   //  this->i_frameRate = frameRate;
 //}
-AnimationPreview::AnimationPreview(QObject *parent)
-    : QObject(parent)
+//AnimationPreview::AnimationPreview(QObject *parent)
+    //: QObject(parent)
+//{
+
+//}
+
+AnimationPreview::AnimationPreview(int frameRate, const std::vector<AnimationManager::AnimationFrame>& framesToAnimate, QObject* parent)
+    : QObject(parent), i_frameRate(frameRate), framesToAnimate(framesToAnimate)
 {
 
 }

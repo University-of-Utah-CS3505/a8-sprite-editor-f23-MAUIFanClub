@@ -12,7 +12,7 @@ class AnimationManager
 {
 public:
     AnimationManager(QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
-
+    int framesPerSecond;
     void setFrameCount(int newFrameCount);
     struct AnimationFrame
     {
@@ -25,7 +25,7 @@ public:
 
 private:
     int frameCount;
-    int framesPerSecond;
+
 
 
 

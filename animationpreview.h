@@ -10,11 +10,10 @@ class AnimationPreview : public QObject
 
 
 public:
-AnimationPreview(QObject *parent = nullptr);
+AnimationPreview(int frameRate, const std::vector<AnimationManager::AnimationFrame>& framesToAnimate, QObject* parent = nullptr);
+
  vector<AnimationManager::AnimationFrame> framesToAnimate;
  int i_frameRate;
- explicit AnimationPreview(int frameRate, vector<AnimationManager::AnimationFrame> framesToAnimate, QObject *parent = nullptr);
-
 
 public slots:
     void startPreview();
