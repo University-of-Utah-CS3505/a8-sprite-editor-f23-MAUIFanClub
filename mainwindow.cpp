@@ -86,7 +86,7 @@ void MainWindow::on_switchSizeButton_clicked()
 
 void MainWindow::on_stopPreviewButton_clicked()
 {
-
+}
 void MainWindow::on_brushToolButton_clicked()
 {
     activeTool = new brushTool();

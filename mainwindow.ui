@@ -127,7 +127,7 @@ background-color:lightgray;
         </property>
         <property name="styleSheet">
          <string notr="true">QFrame {
-	background-color: lightgray;
+        background-color: lightgray;
 }</string>
         </property>
         <property name="midLineWidth">
@@ -256,45 +256,57 @@ background-color:gray;
              </property>
             </widget>
             <widget class="QPushButton" name="switchSizeButton">
-             <property name="geometry">
-              <rect>
-               <x>140</x>
-               <y>30</y>
-            <widget class="QPushButton" name="eraseToolButton">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>10</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Switch Size</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="stopPreviewButton">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>70</y>
-              <string>Erase</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="brushToolButton">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>40</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Stop Preview</string>
-              <string>Brush</string>
-             </property>
-            </widget>
+                        <property name="geometry">
+                          <rect>
+                           <x>140</x>
+                           <y>30</y>
+                           <width>80</width>
+                           <height>24</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>Switch Size</string>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="eraseToolButton">
+                                     <property name="geometry">
+                                      <rect>
+                                       <x>80</x>
+                                       <y>10</y>
+                                       <width>80</width>
+                                       <height>24</height>
+                                      </rect>
+                                     </property>
+                                     <property name="text">
+                                      <string>Erase</string>
+                                     </property>
+                                    </widget>
+                                    <widget class="QPushButton" name="stopPreviewButton">
+                                                 <property name="geometry">
+                                                  <rect>
+                                                   <x>80</x>
+                                                   <y>70</y>
+                                                   <width>80</width>
+                                                   <height>24</height>
+                                                  </rect>
+                                                 </property>
+                                                 <property name="text">
+                                                  <string>Stop Preview</string>
+                                                 </property>
+                                                </widget>
+                                                <widget class="QPushButton" name="brushToolButton">
+                                                             <property name="geometry">
+                                                              <rect>
+                                                               <x>80</x>
+                                                               <y>40</y>
+                                                               <width>80</width>
+                                                               <height>24</height>
+                                                              </rect>
+                                                             </property>
+                                                             <property name="text">
+                                                              <string>Brush</string>
+                                                             </property>
+                                                            </widget>
            </widget>
           </item>
           <item>
