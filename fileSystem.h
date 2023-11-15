@@ -14,7 +14,7 @@ public:
     FileSystem(){}
 public slots:
     void loadJson(QString filepath);
-    void saveSprite(QString filename);
+    void saveSprite(QString filename, int size);
 signals:
 
 private:

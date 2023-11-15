@@ -30,7 +30,7 @@ public:
 
 signals:
     void loadJson(QString filepath);
-    void saveSprite(QString filepath);
+    void saveSprite(QString filepath, int size);
 
 private slots:
     void on_undoBtn_clicked();

@@ -6,7 +6,7 @@ StartupWindow::StartupWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::StartupWindow)
 {
-    ConnectFileSystem();
+    connect(this, &StartupWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
     ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
 
@@ -15,11 +15,6 @@ StartupWindow::StartupWindow(QWidget *parent) :
 StartupWindow::~StartupWindow()
 {
     delete ui;
-}
-
-void StartupWindow::ConnectFileSystem()
-{
-    QObject::connect(this, &StartupWindow::loadJson, &filesystem, &FileSystem::loadJson);
 }
 
 void StartupWindow::on_openProjectButton_clicked()

@@ -17,7 +17,6 @@ class StartupWindow : public QMainWindow
 public:
     explicit StartupWindow(QWidget *parent = nullptr);
     ~StartupWindow();
-    void ConnectFileSystem();
 signals:
     void loadJson(QString filepath);
 

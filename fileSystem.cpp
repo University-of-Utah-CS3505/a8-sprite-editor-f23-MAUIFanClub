@@ -1,7 +1,7 @@
 #include "fileSystem.h"
 void FileSystem::loadJson(QString filepath)
 {
-    //QFile loadFile(filepath);
+    QFile loadFile(filepath);
 
 }
 void FileSystem::readSpritefromJson(QJsonObject &sprite)
@@ -9,7 +9,7 @@ void FileSystem::readSpritefromJson(QJsonObject &sprite)
 
 }
 
-void FileSystem::saveSprite(QString filename)
+void FileSystem::saveSprite(QString filename, int size)
 {
     QFile saveFile(filename);
     if(!saveFile.open(QIODevice::WriteOnly))

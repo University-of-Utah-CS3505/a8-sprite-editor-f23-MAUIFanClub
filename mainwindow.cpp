@@ -6,8 +6,9 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    QObject::connect(this, &MainWindow::saveSprite, &filesystem, &FileSystem::saveSprite);
-    QObject::connect(this, &MainWindow::loadJson, &filesystem, &FileSystem::loadJson);
+    spriteSize = pixelSize;
+    connect(this, &MainWindow::saveSprite, &filesystem, &FileSystem::saveSprite);
+    connect(this, &MainWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
@@ -64,7 +65,7 @@ void MainWindow::on_actionSave_triggered()
 {
 
     QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit saveSprite(filename);
+    emit saveSprite(filename, spriteSize);
 }
 
 
