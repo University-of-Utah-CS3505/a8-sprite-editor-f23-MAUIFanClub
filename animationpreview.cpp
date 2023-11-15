@@ -18,10 +18,9 @@ void AnimationPreview::startPreview() {
        tempFrame = framesToAnimate[i];
 
        // Call function to display given frame
+       SpriteCanvas::changePixmap(tempFrame.animationPixmap);
+       //
        QThread::sleep(1000/i_frameRate);
-
-       SpriteCanvas::changePixmap(tempFrame);
-
 
    }
     std:: cout << "Start Preview Entered" ;

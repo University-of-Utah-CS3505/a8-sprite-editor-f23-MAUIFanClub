@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent, int pixelSize)
     animationManager = new AnimationManager(ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
     AnimationPreview  *animationPreview = new AnimationPreview(this);
     connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);
+    connect(ui->StartPreview, &QAction::triggered, spriteCanvas, &SpriteCanvas::changePixmap);
 }
 
 MainWindow::~MainWindow()
