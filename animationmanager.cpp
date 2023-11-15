@@ -51,3 +51,8 @@ void AnimationManager::changeDisplayedFrame(int index)
 {
     spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
 }
+
+int AnimationManager::getSize()
+{
+    return animationFrames.size();
+}

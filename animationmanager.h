@@ -9,7 +9,7 @@
 
 using std::vector;
 
-class AnimationManager : public QObject
+class AnimationManager
 {
 public:
     AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
@@ -24,7 +24,7 @@ public:
     };
 
     vector<AnimationFrame> animationFrames;
-
+    int getSize();
 signals:
 
 public slots:
