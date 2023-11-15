@@ -10,6 +10,7 @@
 #include "undoredomanager.h"
 #include "spritecanvas.h"
 #include "animationmanager.h"
+#include "animationpreview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,12 +30,15 @@ private slots:
     void on_redoBtn_clicked();
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
+    //void on_actionAnimationPreview_triggered();
+    void on_StartPreview_triggered();
 
 private:
     Ui::MainWindow *ui;
 
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
+    AnimationPreview *animationPreview;
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

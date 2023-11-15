@@ -14,10 +14,6 @@ public:
     AnimationManager(QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
 
     void setFrameCount(int newFrameCount);
-private:
-    int frameCount;
-    int framesPerSecond;
-
     struct AnimationFrame
     {
         QLabel *uiElement;
@@ -26,6 +22,12 @@ private:
     };
 
     vector<AnimationFrame> animationFrames;
+
+private:
+    int frameCount;
+    int framesPerSecond;
+
+
 
     QScrollArea *framesPanel;
 };
