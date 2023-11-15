@@ -1,18 +1,20 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent, int pixelSize)
+MainWindow::MainWindow(QWidget *parent, int spriteSize)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , spriteSize(spriteSize)
 {
     ui->setupUi(this);
 
-    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, pixelSize);
-    animationManager = new AnimationManager(ui->scrollArea, 32, 4, pixelSize); // 32 Is tmp frame count | 4 is tmp frame rate
+    activeTool = new brushTool();
+
+    spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize);
     AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
     connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);
     connect(ui->startPreviewButton, &QPushButton::clicked, animationPreview, &AnimationPreview::startPreview);
-
 }
 
 MainWindow::~MainWindow()
@@ -54,8 +56,6 @@ void MainWindow::on_clearBtn_clicked()
     spriteCanvas->clearCanvas();
 }
 
-
-
 void MainWindow::on_colorBtn_clicked()
 {
     QColorDialog colorSelectionWindow;
@@ -63,6 +63,15 @@ void MainWindow::on_colorBtn_clicked()
     spriteCanvas->setPixelColor(selectedColor);
 }
 
+void MainWindow::on_addFrameBtn_clicked()
+{
+    animationManager->createNewFrame();
+}
+
+void MainWindow::on_removeFrameBtn_clicked()
+{
+    animationManager->removeFrame();
+}
 
 /* -- Preview Button Press Events -- */
 
@@ -77,21 +86,20 @@ void MainWindow::on_startPreviewButton_clicked()
     animationPreview->startPreview();
 }
 
-
 void MainWindow::on_switchSizeButton_clicked()
 {
 
 }
 
-
 void MainWindow::on_stopPreviewButton_clicked()
 {
+
 }
+
 void MainWindow::on_brushToolButton_clicked()
 {
     activeTool = new brushTool();
 }
-
 
 void MainWindow::on_eraseToolButton_clicked()
 {

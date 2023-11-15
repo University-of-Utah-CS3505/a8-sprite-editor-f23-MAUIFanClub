@@ -45,6 +45,10 @@ private slots:
 
     void on_eraseToolButton_clicked();
 
+    void on_addFrameBtn_clicked();
+
+    void on_removeFrameBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     Tool_Parent* activeTool = new eraseTool();
@@ -55,5 +59,8 @@ private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
+    int spriteSize;
+    int frameCount;
 };
 #endif // MAINWINDOW_H

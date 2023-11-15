@@ -7,8 +7,9 @@
 #include <QPointF>
 #include <QColor>
 #include <QMouseEvent>
-#include "undoredomanager.h"
 #include <QDebug>
+#include "undoredomanager.h"
+#include "framepreviewui.h"
 
 class SpriteCanvas
 {
@@ -17,9 +18,9 @@ public:
 
     SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
 
+    FramePreviewUi *previewFrameUi;
 
     void changePixmap(QPixmap newPixmap);
-
 
     void mousePress(QPoint globalMousePos);
     void mouseMove(QPoint globalMousePos);
@@ -31,6 +32,10 @@ public:
 
     void setPixelColor(QColor color);
     void clearCanvas();
+
+    void changePixmap(QPixmap *newPixmap);
+
+    void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
 
     void undoAction();
     void redoAction();

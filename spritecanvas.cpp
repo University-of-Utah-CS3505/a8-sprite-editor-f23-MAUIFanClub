@@ -58,6 +58,8 @@ void SpriteCanvas::mouseRelease()
     drawing = false;
 
     lastDrawnPixel = QPoint(-1,-1);
+
+    previewFrameUi->setPixmap(spritePixmap->scaled(QSize(128,128)));
 }
 
 bool SpriteCanvas::mouseOnSpriteCanvas(QPoint localMousePos)
@@ -124,6 +126,15 @@ void SpriteCanvas::clearCanvas()
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
 
+void SpriteCanvas::changePixmap(QPixmap *newPixmap)
+{
+    spritePixmap = newPixmap;
+    painter.end();
+
+    painter.begin(spritePixmap);
+    spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+}
+
 void SpriteCanvas::setPixelColor(QColor color)
 {
     pixelColor = color;
@@ -139,7 +150,10 @@ void SpriteCanvas::redoAction()
     undoRedoManager->redo(&painter, spriteCanvas, spritePixmap, spriteCanvasSize);
 }
 
-void SpriteCanvas::changePixmap(QPixmap newPixmap)
+void SpriteCanvas::displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize)
 {
-    spriteCanvas->setPixmap(newPixmap.scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    if (actualSize)
+        spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteSize, spriteSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    else
+        spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }

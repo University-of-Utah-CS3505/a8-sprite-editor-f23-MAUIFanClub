@@ -5,31 +5,43 @@
 #include <QLabel>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include <QTimer>
+#include "spritecanvas.h"
+#include "framepreviewui.h"
 
 using std::vector;
 
-class AnimationManager
+class AnimationManager : public QObject
 {
 public:
-    AnimationManager(QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize);
-    int framesPerSecond;
-    void setFrameCount(int newFrameCount);
+    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize);
+
     struct AnimationFrame
     {
-        QLabel *uiElement;
-        QPixmap animationPixmap;
-        QPixmap framePreviewPixmap;
+        FramePreviewUi *uiElement;
+        QPixmap *animationPixmap;
     };
 
     vector<AnimationFrame> animationFrames;
 
+    int framesPerSecond;
+
+    void createNewFrame();
+    void removeFrame();
+
+signals:
+
+public slots:
+    void changeDisplayedFrame(int index);
+
 private:
-    int frameCount;
+    QTimer updatePreviewTimer;
 
-
-
+    int spriteSize;
 
     QScrollArea *framesPanel;
+
+    SpriteCanvas *spriteCanvas;
 };
 
 #endif // ANIMATIONMANAGER_H

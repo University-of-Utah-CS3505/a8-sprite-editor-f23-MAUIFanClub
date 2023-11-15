@@ -1,42 +1,61 @@
 #include "animationmanager.h"
 
-AnimationManager::AnimationManager(QScrollArea *framesPanel, int frameCount, int framesPerSecond, int spriteSize)
+AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize) : framesPanel(framesPanel), spriteSize(spriteSize)
 {
-    this->frameCount = frameCount;
-    this->framesPerSecond = framesPerSecond;
-    this->framesPanel = framesPanel;
+    this->spriteCanvas = spriteCanvas;
 
     animationFrames = vector<AnimationFrame>(0);
 
-    for (int i = 0; i < frameCount; i++)
-    {
-        AnimationFrame newFrame;
+    createNewFrame();
 
-        QPixmap animationPixmap(spriteSize, spriteSize);
-        animationPixmap.fill(Qt::lightGray);
-
-        QPixmap framePreviewPixmap = animationPixmap.scaled(QSize(128,128));
-
-        // Ui Frame Element Creation
-        QLabel *frameUiElement = new QLabel();
-        frameUiElement->setMinimumHeight(128);
-        frameUiElement->setMaximumHeight(128);
-        frameUiElement->setMinimumWidth(128);
-        frameUiElement->setMaximumWidth(128);
-        frameUiElement->setPixmap(framePreviewPixmap);
-
-        // Assignment of variables for newFrame
-        newFrame.animationPixmap = animationPixmap;
-        newFrame.framePreviewPixmap = framePreviewPixmap;
-        newFrame.uiElement = frameUiElement;
-
-        animationFrames.push_back(newFrame);
-
-        this->framesPanel->widget()->layout()->addWidget(frameUiElement);
-    }
+    changeDisplayedFrame(0);
 }
 
-void AnimationManager::setFrameCount(int newFrameCount)
+
+void AnimationManager::createNewFrame()
 {
-    animationFrames.resize(newFrameCount);
+    AnimationFrame newFrame;
+
+    int index = animationFrames.size();
+
+    QPixmap *animationPixmap = new QPixmap(spriteSize, spriteSize);
+    animationPixmap->fill(Qt::lightGray);
+
+    // Ui Frame Element Creation
+    FramePreviewUi *frameUiElement = new FramePreviewUi(index);
+    frameUiElement->setMinimumHeight(128);
+    frameUiElement->setMaximumHeight(128);
+    frameUiElement->setMinimumWidth(128);
+    frameUiElement->setMaximumWidth(128);
+    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128,128)));
+
+    QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
+
+    // Assignment of variables for newFrame
+    newFrame.animationPixmap = animationPixmap;
+    newFrame.uiElement = frameUiElement;
+
+    animationFrames.push_back(newFrame);
+
+    framesPanel->widget()->layout()->addWidget(frameUiElement);
+}
+
+void AnimationManager::removeFrame()
+{
+    if (animationFrames.size() == 1) return;
+
+    AnimationFrame *af = &animationFrames[animationFrames.size()-1];
+
+    framesPanel->widget()->layout()->removeWidget(af->uiElement);
+    delete af->uiElement;
+
+    animationFrames.pop_back();
+
+    changeDisplayedFrame(animationFrames.size()-1);
+}
+
+void AnimationManager::changeDisplayedFrame(int index)
+{
+    spriteCanvas->previewFrameUi = animationFrames[index].uiElement;
+    spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
 }
