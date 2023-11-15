@@ -16,6 +16,15 @@ public:
 
     void setFrameCount(int newFrameCount);
 
+    struct AnimationFrame
+    {
+        QLabel *uiElement;
+        QPixmap *animationPixmap;
+        QPixmap framePreviewPixmap;
+    };
+
+    vector<AnimationFrame> animationFrames;
+
 signals:
 
 public slots:
@@ -24,15 +33,6 @@ public slots:
 private:
     int frameCount;
     int framesPerSecond;
-
-    struct AnimationFrame
-    {
-        QLabel *uiElement;
-        QPixmap animationPixmap;
-        QPixmap framePreviewPixmap;
-    };
-
-    vector<AnimationFrame> animationFrames;
 
     QScrollArea *framesPanel;
 

@@ -93,9 +93,13 @@ void SpriteCanvas::clearCanvas()
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
 
-void SpriteCanvas::changePixmap(QPixmap newPixmap)
+void SpriteCanvas::changePixmap(QPixmap *newPixmap)
 {
-    spriteCanvas->setPixmap(newPixmap.scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    spritePixmap = newPixmap;
+    painter.end();
+
+    painter.begin(spritePixmap);
+    spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
 
 void SpriteCanvas::setPixelColor(QColor color)
