@@ -10,6 +10,7 @@
 #include "undoredomanager.h"
 #include "spritecanvas.h"
 #include "animationmanager.h"
+#include "animationpreview.h"
 #include "tool_parent.h"
 #include "brushTool.h"
 #include "eraseTool.h"
@@ -31,6 +32,14 @@ private slots:
     void on_redoBtn_clicked();
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
+    //void on_actionAnimationPreview_triggered();
+    void on_StartPreview_triggered();
+
+    void on_startPreviewButton_clicked();
+
+    void on_switchSizeButton_clicked();
+
+    void on_stopPreviewButton_clicked();
 
     void on_brushToolButton_clicked();
 
@@ -41,6 +50,7 @@ private:
     Tool_Parent* activeTool = new eraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
+    AnimationPreview *animationPreview;
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

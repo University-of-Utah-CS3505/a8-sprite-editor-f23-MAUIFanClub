@@ -14,10 +14,19 @@ class SpriteCanvas
 {
 public:
     UndoRedoManager* undoRedoManager;
+
     SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
+
+
+    void changePixmap(QPixmap newPixmap);
+
+
+    void mousePress(QPoint globalMousePos);
+    void mouseMove(QPoint globalMousePos);
 
     void mousePress(QPoint globalMousePos, bool isDraw);
     void mouseMove(QPoint globalMousePos, bool isDraw);
+
     void mouseRelease();
 
     void setPixelColor(QColor color);
