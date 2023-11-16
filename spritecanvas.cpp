@@ -11,6 +11,8 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 
     canDraw = true;
 
+    pixelColor = QColor(Qt::GlobalColor::black);
+
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize,
                                                  spriteCanvasSize,
@@ -73,7 +75,7 @@ void SpriteCanvas::paintFill(QPoint globalMousePos)
     QPoint pixelPos = getPixelPosition(spriteCanvas->mapFromGlobal(globalMousePos));
     QColor color(spriteImg.pixel(pixelPos));
 
-    vector<QPoint> paintFillPixels;
+    if (color == pixelColor) return;
 
     QPen p;
     p.setColor(pixelColor);
