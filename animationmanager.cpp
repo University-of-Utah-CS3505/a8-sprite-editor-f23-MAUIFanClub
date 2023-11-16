@@ -19,7 +19,7 @@ void AnimationManager::createNewFrame()
     int index = animationFrames.size();
 
     QPixmap *animationPixmap = new QPixmap(spriteSize, spriteSize);
-    animationPixmap->fill(Qt::lightGray);
+    animationPixmap->fill(Qt::color0);
 
     // Ui Frame Element Creation
     FramePreviewUi *frameUiElement = new FramePreviewUi(index);

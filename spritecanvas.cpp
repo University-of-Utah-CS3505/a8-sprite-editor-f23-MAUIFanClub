@@ -6,7 +6,7 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
     this->spriteSize = spriteSize;
 
     spritePixmap = new QPixmap(spriteSize,spriteSize);
-    spritePixmap->fill(Qt::lightGray);
+    spritePixmap->fill(Qt::color0);
 
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
@@ -20,7 +20,7 @@ void SpriteCanvas::refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize)
     this->spriteSize = spriteSize;
 
     spritePixmap = new QPixmap(spriteSize,spriteSize);
-    spritePixmap->fill(Qt::lightGray);
+    spritePixmap->fill(Qt::color0);
 
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
@@ -117,7 +117,7 @@ void SpriteCanvas::erasePixel(QPoint pixelPosition)
 
     // Pen used for drawing on painter
     QPen p;
-    p.setColor(Qt::lightGray);
+    p.setColor(Qt::color0);
     p.setWidth(1);
 
     painter.setPen(p);
@@ -135,7 +135,7 @@ void SpriteCanvas::clearCanvas()
 {
     emit startAction();
 
-    spritePixmap->fill(Qt::lightGray);
+    spritePixmap->fill(Qt::color0);
 
     emit endAction();
 
