@@ -285,7 +285,7 @@ border-radius:15px;
                 <property name="font">
                  <font>
                   <family>Sama Devanagari</family>
-                  <pointsize>20</pointsize>
+                  <pointsize>16</pointsize>
                   <bold>true</bold>
                   <underline>true</underline>
                  </font>
