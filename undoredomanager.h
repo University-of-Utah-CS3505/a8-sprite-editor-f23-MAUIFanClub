@@ -1,12 +1,12 @@
 #ifndef UNDOREDOMANAGER_H
 #define UNDOREDOMANAGER_H
 
-#include <QPixmap>
-#include <stack>
-#include <QPainter>
+#include <QDebug>
 #include <QLabel>
+#include <QPainter>
+#include <QPixmap>
 #include "framepreviewui.h"
-
+#include <stack>
 using std::vector;
 
 class UndoRedoManager

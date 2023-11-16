@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent, int spriteSize)
     : QMainWindow(parent)
@@ -21,7 +21,10 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     connect(ui->startPreviewButton, &QPushButton::clicked, animationPreview, &AnimationPreview::startPreview);
 
     connect(spriteCanvas, &SpriteCanvas::updatePreviewUi, animationManager, &AnimationManager::updateFramePreviewElements);
-    connect(spriteCanvas, &SpriteCanvas::startAction, animationManager, &AnimationManager::startAction);
+    connect(spriteCanvas,
+            &SpriteCanvas::startAction,
+            animationManager,
+            &AnimationManager::startAction);
     connect(spriteCanvas, &SpriteCanvas::endAction, animationManager, &AnimationManager::endAction);
 }
 

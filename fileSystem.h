@@ -1,15 +1,15 @@
 #ifndef FILESYSTEM_H
 #define FILESYSTEM_H
 
-#include <QObject>
-#include <QFile>
-#include <QDebug>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QColor>
 #include "animationmanager.h"
 #include "spritecanvas.h"
+#include <QColor>
+#include <QDebug>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QObject>
 
 class FileSystem : public QObject
 {

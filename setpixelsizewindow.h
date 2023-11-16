@@ -1,7 +1,11 @@
 #ifndef SETPIXELSIZEWINDOW_H
 #define SETPIXELSIZEWINDOW_H
 
+#include <QDebug>
 #include <QMainWindow>
+#include "mainwindow.h"
+#include "startupwindow.h"
+#include <cmath>
 
 namespace Ui {
 class SetPixelSizeWindow;

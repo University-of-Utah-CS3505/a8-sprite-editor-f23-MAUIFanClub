@@ -1,5 +1,4 @@
 #include "undoredomanager.h"
-#include <QDebug>
 
 UndoRedoManager::UndoRedoManager() { }
 

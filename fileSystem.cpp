@@ -1,6 +1,5 @@
 #include "fileSystem.h"
-#include "qforeach.h"
-#include <QTextStream>
+
 FileSystem::FileSystem(AnimationManager* animManager, SpriteCanvas* spriteCanv)
 {
     animationManager = animManager;

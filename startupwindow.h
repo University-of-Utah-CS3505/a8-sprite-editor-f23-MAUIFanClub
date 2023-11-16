@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QObject>
 #include "mainwindow.h"
+#include "setpixelsizewindow.h"
 
 namespace Ui {
 class StartupWindow;

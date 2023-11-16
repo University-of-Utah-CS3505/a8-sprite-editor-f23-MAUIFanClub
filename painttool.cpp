@@ -2,7 +2,6 @@
 
 paintTool::paintTool()
 {
-
 }
 
 void paintTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)

@@ -1,7 +1,11 @@
 #ifndef ANIMATIONPREVIEW_H
 #define ANIMATIONPREVIEW_H
+
 #include "animationmanager.h"
+#include "spritecanvas.h"
 #include <QObject>
+#include <QThread>
+#include <iostream>
 
 class AnimationPreview : public QObject
 {

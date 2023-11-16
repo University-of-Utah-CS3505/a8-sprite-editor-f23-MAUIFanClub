@@ -1,9 +1,6 @@
 #include "setpixelsizewindow.h"
-#include "startupwindow.h"
-#include<QDebug>
-#include<cmath>
-#include "mainwindow.h"
 #include "ui_setpixelsizewindow.h"
+
 SetPixelSizeWindow::SetPixelSizeWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SetPixelSizeWindow)
@@ -30,7 +27,6 @@ void SetPixelSizeWindow::on_returnButton_clicked()
     StartupWindow * x = new StartupWindow();
     this->close();
     x->show();
-
 }
 void SetPixelSizeWindow::on_pixelIncrease_Button_clicked()
 {
