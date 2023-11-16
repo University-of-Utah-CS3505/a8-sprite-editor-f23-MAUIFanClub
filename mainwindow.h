@@ -1,3 +1,4 @@
+//Reviewed by: George Guo
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

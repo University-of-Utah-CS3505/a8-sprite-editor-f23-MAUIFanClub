@@ -1,3 +1,4 @@
+//Reviewed by: Ahmed Abdalla
 #include "setpixelsizewindow.h"
 #include <QDebug>
 #include "mainwindow.h"

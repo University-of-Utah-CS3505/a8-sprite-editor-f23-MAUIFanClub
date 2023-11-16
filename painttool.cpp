@@ -1,3 +1,4 @@
+//Reviewed by: Ahmed Abdalla
 #include "painttool.h"
 
 paintTool::paintTool() {}

@@ -1,3 +1,4 @@
+//Reviewed by: George Guo
 #ifndef SPRITECANVAS_H
 #define SPRITECANVAS_H
 

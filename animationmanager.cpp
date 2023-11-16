@@ -1,3 +1,4 @@
+//Reviewed by: Drew Fenter
 #include "animationmanager.h"
 
 AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,

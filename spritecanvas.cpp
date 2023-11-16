@@ -1,3 +1,4 @@
+//Reviewed by: George Guo
 #include "spritecanvas.h"
 
 SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)

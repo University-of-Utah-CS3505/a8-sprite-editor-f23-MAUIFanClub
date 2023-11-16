@@ -1,3 +1,4 @@
+//Reviewed by: Drew Fenter
 #include "fileSystem.h"
 
 FileSystem::FileSystem(AnimationManager *animManager, SpriteCanvas *spriteCanv)
@@ -7,6 +8,12 @@ FileSystem::FileSystem(AnimationManager *animManager, SpriteCanvas *spriteCanv)
 }
 
 FileSystem::FileSystem() {}
+
+FileSystem::~FileSystem()
+{
+    delete animationManager;
+    delete spriteCanvas;
+}
 
 FileSystem &FileSystem::operator=(FileSystem other)
 {

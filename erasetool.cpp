@@ -1,3 +1,4 @@
+//Reviewed by: Aidan Bott
 #include "erasetool.h"
 
 EraseTool::EraseTool() {}
