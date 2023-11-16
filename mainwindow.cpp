@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     , spriteSize(spriteSize)
 {
     ui->setupUi(this);
-
-    activeTool = new brushTool();
+    
+    activeTool = new BrushTool();
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
 
@@ -123,12 +123,12 @@ void MainWindow::on_stopPreviewButton_clicked()
 
 void MainWindow::on_brushToolButton_clicked()
 {
-    activeTool = new brushTool();
+    activeTool = new BrushTool();
 }
 
 void MainWindow::on_eraseToolButton_clicked()
 {
-    activeTool = new eraseTool();
+    activeTool = new EraseTool();
 }
 
 void MainWindow::on_paintBucketToolButton_clicked()

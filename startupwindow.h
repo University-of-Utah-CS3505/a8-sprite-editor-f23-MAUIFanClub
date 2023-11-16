@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QObject>
-#include "fileSystem.h"
 #include "mainwindow.h"
 
 namespace Ui {
@@ -28,7 +27,6 @@ private slots:
 
 private:
     Ui::StartupWindow *ui;
-    FileSystem *filesystem;
 };
 
 #endif // STARTUPWINDOW_H

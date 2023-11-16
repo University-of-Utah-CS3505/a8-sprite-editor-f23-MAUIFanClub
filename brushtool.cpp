@@ -1,10 +1,10 @@
 #include "brushtool.h"
 
-brushTool::brushTool()
+BrushTool::BrushTool()
 {
 
 }
-void brushTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)
+void BrushTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)
 {
     Tool_Parent::useTool( event, canvas, isHeldDown);
     if(isHeldDown)

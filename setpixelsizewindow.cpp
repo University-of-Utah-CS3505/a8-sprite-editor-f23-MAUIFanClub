@@ -4,9 +4,9 @@
 #include<cmath>
 #include "mainwindow.h"
 #include "ui_setpixelsizewindow.h"
-setPixelSizeWindow::setPixelSizeWindow(QWidget *parent) :
+SetPixelSizeWindow::SetPixelSizeWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::setPixelSizeWindow)
+    ui(new Ui::SetPixelSizeWindow)
 {
     ui->setupUi(this);
     const QString currentPixelSize = "4";
@@ -15,24 +15,24 @@ setPixelSizeWindow::setPixelSizeWindow(QWidget *parent) :
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
     ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
 }
-void setPixelSizeWindow::updateValues(int x, int y)
+void SetPixelSizeWindow::updateValues(int x, int y)
 {
     ui->heightLabel->setText(QString::number(x));
     ui->widthLabel->setText(QString::number(y));
 }
-setPixelSizeWindow::~setPixelSizeWindow()
+SetPixelSizeWindow::~SetPixelSizeWindow()
 {
     delete ui;
 }
 
-void setPixelSizeWindow::on_returnButton_clicked()
+void SetPixelSizeWindow::on_returnButton_clicked()
 {
     StartupWindow * x = new StartupWindow();
     this->close();
     x->show();
 
 }
-void setPixelSizeWindow::on_pixelIncrease_Button_clicked()
+void SetPixelSizeWindow::on_pixelIncrease_Button_clicked()
 {
     if(currentPowerOfTwo == 9) return;
     currentPowerOfTwo ++;
@@ -41,7 +41,7 @@ void setPixelSizeWindow::on_pixelIncrease_Button_clicked()
 }
 
 
-void setPixelSizeWindow::on_pixelDecrease_Button_clicked()
+void SetPixelSizeWindow::on_pixelDecrease_Button_clicked()
 {
     if(currentPowerOfTwo == 0) return;
     currentPowerOfTwo--;
@@ -50,7 +50,7 @@ void setPixelSizeWindow::on_pixelDecrease_Button_clicked()
 }
 
 
-void setPixelSizeWindow::on_confirmButton_clicked()
+void SetPixelSizeWindow::on_confirmButton_clicked()
 {
     MainWindow * x = new MainWindow(nullptr, currentPixelSize);
     this->close();

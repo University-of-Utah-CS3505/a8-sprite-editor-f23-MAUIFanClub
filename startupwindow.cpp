@@ -8,7 +8,6 @@ StartupWindow::StartupWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
-    filesystem = new FileSystem();
 }
 
 StartupWindow::~StartupWindow()
@@ -18,7 +17,7 @@ StartupWindow::~StartupWindow()
 
 void StartupWindow::on_openProjectButton_clicked()
 {
-    MainWindow * x = new MainWindow(nullptr, 2);
+    MainWindow * x = new MainWindow(nullptr, 4);
     this->close();
     x->show();
     x->on_actionLoad_triggered();
@@ -27,7 +26,7 @@ void StartupWindow::on_openProjectButton_clicked()
 
 void StartupWindow::on_newProjectButton_clicked()
 {
-    setPixelSizeWindow * x = new setPixelSizeWindow();
+    SetPixelSizeWindow * x = new SetPixelSizeWindow();
     x->show();
     this->close();
     // show set pixel size

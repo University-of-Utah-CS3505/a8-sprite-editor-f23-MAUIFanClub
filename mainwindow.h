@@ -60,7 +60,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    Tool_Parent* activeTool = new eraseTool();
+    Tool_Parent* activeTool = new EraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
     FileSystem *fileSystem;

@@ -20,7 +20,8 @@ AnimationPreview::AnimationPreview(int frameRate, const std::vector<AnimationMan
 
 }
 
-void AnimationPreview::startPreview() {
+void AnimationPreview::startPreview()
+{
 
 
    AnimationManager::AnimationFrame tempFrame;

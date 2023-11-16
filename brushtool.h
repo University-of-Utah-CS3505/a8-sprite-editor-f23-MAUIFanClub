@@ -3,10 +3,10 @@
 #define BRUSHTOOL_H
 
 
-class brushTool: public Tool_Parent
+class BrushTool: public Tool_Parent
 {
 public:
-    brushTool();
+    BrushTool();
     void useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown);
 };
 

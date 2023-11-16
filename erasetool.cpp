@@ -1,11 +1,11 @@
 #include "erasetool.h"
 
-eraseTool::eraseTool()
+EraseTool::EraseTool()
 {
 
 }
 
-void eraseTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)
+void EraseTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)
 {
     Tool_Parent::useTool( event, canvas, isHeldDown);
     if(isHeldDown)
