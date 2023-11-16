@@ -207,7 +207,7 @@ background-color:lightgray;
           <rect>
            <x>-1</x>
            <y>-1</y>
-           <width>251</width>
+           <width>241</width>
            <height>641</height>
           </rect>
          </property>
@@ -370,7 +370,7 @@ background-color:gray;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="colorPanelLabel">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -397,7 +397,7 @@ background-color:gray;
               <rect>
                <x>9</x>
                <y>100</y>
-               <width>221</width>
+               <width>211</width>
                <height>24</height>
               </rect>
              </property>
@@ -469,7 +469,7 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">
