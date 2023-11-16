@@ -42,6 +42,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         brushtool.h brushtool.cpp
 
         animationpreview.h animationpreview.cpp
+        painttool.h painttool.cpp
 
 
     )

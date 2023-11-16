@@ -127,6 +127,7 @@ void MainWindow::on_eraseToolButton_clicked()
     activeTool = new eraseTool();
 }
 
-
-
-
+void MainWindow::on_paintBucketToolButton_clicked()
+{
+    activeTool = new paintTool();
+}

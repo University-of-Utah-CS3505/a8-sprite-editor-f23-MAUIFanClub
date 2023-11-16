@@ -246,32 +246,10 @@ background-color:gray;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QLabel" name="label_2">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>10</y>
-               <width>221</width>
-               <height>281</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Tools Panel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
             <widget class="QPushButton" name="startPreviewButton">
              <property name="geometry">
               <rect>
-               <x>20</x>
+               <x>80</x>
                <y>30</y>
                <width>80</width>
                <height>24</height>
@@ -284,8 +262,8 @@ background-color:gray;
             <widget class="QPushButton" name="switchSizeButton">
              <property name="geometry">
               <rect>
-               <x>140</x>
-               <y>30</y>
+               <x>80</x>
+               <y>90</y>
                <width>80</width>
                <height>24</height>
               </rect>
@@ -298,7 +276,7 @@ background-color:gray;
              <property name="geometry">
               <rect>
                <x>80</x>
-               <y>10</y>
+               <y>270</y>
                <width>80</width>
                <height>24</height>
               </rect>
@@ -311,7 +289,7 @@ background-color:gray;
              <property name="geometry">
               <rect>
                <x>80</x>
-               <y>70</y>
+               <y>60</y>
                <width>80</width>
                <height>24</height>
               </rect>
@@ -321,16 +299,32 @@ background-color:gray;
              </property>
             </widget>
             <widget class="QPushButton" name="brushToolButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="geometry">
               <rect>
-               <x>80</x>
-               <y>40</y>
+               <x>40</x>
+               <y>240</y>
                <width>80</width>
                <height>24</height>
               </rect>
              </property>
              <property name="text">
               <string>Brush</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="paintBucketToolButton">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>240</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Paint Bucket</string>
              </property>
             </widget>
            </widget>
@@ -370,28 +364,6 @@ background-color:gray;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QLabel" name="label">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>5</y>
-               <width>221</width>
-               <height>141</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Color Picker Panel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
             <widget class="QPushButton" name="colorBtn">
              <property name="geometry">
               <rect>
@@ -469,7 +441,7 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">

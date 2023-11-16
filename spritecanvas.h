@@ -10,6 +10,8 @@
 #include <QMouseEvent>
 #include <QDebug>
 
+using std::vector;
+
 class SpriteCanvas : public QObject
 {
     Q_OBJECT
@@ -36,6 +38,8 @@ public:
 
     void changePixmap(QPixmap *newPixmap);
 
+    void paintFill(QPoint globalMousePos);
+
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
     void refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize);
     QLabel* getSpriteCanvas();
@@ -60,6 +64,8 @@ private:
     void erasePixel (QPoint pixelPoisiton);
     bool mouseOnSpriteCanvas(QPoint globalMousePos);
     QPoint getPixelPosition(QPoint mousePos);
+
+    void findAllPaintFillPixels(vector<QPoint> *paintFillPixels, QPoint currentPixelPos, QImage spriteImg, QColor clickedPixelColor);
 
     bool drawing;
 };
