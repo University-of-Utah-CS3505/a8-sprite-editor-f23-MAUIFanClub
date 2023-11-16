@@ -22,13 +22,14 @@ public:
         QPixmap previousState;
     };
 
-    void startAction(QPixmap* framePixmapPtr, QPixmap oldPixmap);
+    void startAction(QPixmap *framePixmapPtr, QPixmap oldPixmap);
     void endAction(QPixmap newPixmap);
 
     void undo();
     void redo();
 
     void removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr);
+
 private:
     std::stack<DrawAction> undoStack;
     std::stack<DrawAction> redoStack;

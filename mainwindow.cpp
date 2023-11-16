@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     , spriteSize(spriteSize)
 {
     ui->setupUi(this);
-    
+
     activeTool = new BrushTool();
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
@@ -15,12 +15,25 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize, true);
     fileSystem = new FileSystem(animationManager, spriteCanvas);
 
-    AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
+    ui->colorPanelLabel->setStyleSheet("* {background-color: black}");
 
-    connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);
-    connect(ui->startPreviewButton, &QPushButton::clicked, animationPreview, &AnimationPreview::startPreview);
+    AnimationPreview *animationPreview = new AnimationPreview(animationManager->framesPerSecond,
+                                                              animationManager->animationFrames,
+                                                              nullptr);
 
-    connect(spriteCanvas, &SpriteCanvas::updatePreviewUi, animationManager, &AnimationManager::updateFramePreviewElements);
+    connect(ui->StartPreview,
+            &QAction::triggered,
+            animationPreview,
+            &AnimationPreview::startPreview);
+    connect(ui->startPreviewButton,
+            &QPushButton::clicked,
+            animationPreview,
+            &AnimationPreview::startPreview);
+
+    connect(spriteCanvas,
+            &SpriteCanvas::updatePreviewUi,
+            animationManager,
+            &AnimationManager::updateFramePreviewElements);
     connect(spriteCanvas,
             &SpriteCanvas::startAction,
             animationManager,
@@ -35,14 +48,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
+    QString filename = QFileDialog::getSaveFileName(this,
+                                                    tr("Choose Sprite"),
+                                                    "C://",
+                                                    "Sprite Editor Project (*.ssp);;");
     fileSystem->saveSprite(filename, spriteSize);
 }
 
-
 void MainWindow::on_actionLoad_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
+    QString filename = QFileDialog::getOpenFileName(this,
+                                                    tr("Open File"),
+                                                    "C://",
+                                                    "Sprite Editor Project (*.ssp);;");
     spriteSize = fileSystem->loadJson(filename);
 }
 
@@ -105,7 +123,6 @@ void MainWindow::on_removeFrameBtn_clicked()
 
 void MainWindow::on_StartPreview_triggered()
 {
-
     animationPreview->startPreview();
 }
 
@@ -114,15 +131,9 @@ void MainWindow::on_startPreviewButton_clicked()
     animationPreview->startPreview();
 }
 
-void MainWindow::on_switchSizeButton_clicked()
-{
+void MainWindow::on_switchSizeButton_clicked() {}
 
-}
-
-void MainWindow::on_stopPreviewButton_clicked()
-{
-
-}
+void MainWindow::on_stopPreviewButton_clicked() {}
 
 void MainWindow::on_brushToolButton_clicked()
 {

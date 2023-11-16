@@ -5,18 +5,21 @@
 #include <QWidget>
 #include <Qt>
 
-class FramePreviewUi : public QLabel {
+class FramePreviewUi : public QLabel
+{
     Q_OBJECT
 
 public:
-    explicit FramePreviewUi(int index, QWidget* parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit FramePreviewUi(int index,
+                            QWidget *parent = Q_NULLPTR,
+                            Qt::WindowFlags f = Qt::WindowFlags());
     ~FramePreviewUi();
 
 signals:
     void clicked(int index);
 
 protected:
-    void mousePressEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent *event);
 
 private:
     int index;

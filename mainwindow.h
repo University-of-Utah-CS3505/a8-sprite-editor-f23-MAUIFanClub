@@ -1,24 +1,26 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QColorDialog>
 #include <QColor>
-#include <stack>
+#include <QColorDialog>
 #include <QFileDialog>
-#include "undoredomanager.h"
-#include "spritecanvas.h"
+#include <QMainWindow>
+#include <QMouseEvent>
+#include <QPainter>
 #include "animationmanager.h"
 #include "animationpreview.h"
-#include "tool_parent.h"
 #include "brushTool.h"
 #include "eraseTool.h"
 #include "fileSystem.h"
 #include "painttool.h"
+#include "spritecanvas.h"
+#include "tool_parent.h"
+#include "undoredomanager.h"
+#include <stack>
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 using DrawAction = UndoRedoManager::DrawAction;
@@ -60,7 +62,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    Tool_Parent* activeTool = new EraseTool();
+    Tool_Parent *activeTool = new EraseTool();
     SpriteCanvas *spriteCanvas;
     AnimationManager *animationManager;
     FileSystem *fileSystem;

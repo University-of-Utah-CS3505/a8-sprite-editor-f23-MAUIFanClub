@@ -1,8 +1,8 @@
 #ifndef STARTUPWINDOW_H
 #define STARTUPWINDOW_H
 
-#include <QMainWindow>
 #include <QFileDialog>
+#include <QMainWindow>
 #include <QObject>
 #include "mainwindow.h"
 #include "setpixelsizewindow.h"

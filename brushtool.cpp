@@ -1,19 +1,12 @@
 #include "brushtool.h"
 
-BrushTool::BrushTool()
+BrushTool::BrushTool() {}
+void BrushTool::useTool(QMouseEvent *event, SpriteCanvas *canvas, bool isHeldDown)
 {
-
-}
-void BrushTool::useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown)
-{
-    Tool_Parent::useTool( event, canvas, isHeldDown);
-    if(isHeldDown)
-    {
+    Tool_Parent::useTool(event, canvas, isHeldDown);
+    if (isHeldDown) {
         canvas->mouseMove(event->globalPosition().toPoint(), true);
-    }
-    else
-    {
+    } else {
         canvas->mousePress(event->globalPosition().toPoint(), true);
     }
-
 }

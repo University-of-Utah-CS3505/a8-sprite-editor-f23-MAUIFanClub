@@ -1,14 +1,14 @@
 #ifndef SPRITECANVAS_H
 #define SPRITECANVAS_H
 
-#include <QPainter>
-#include <QPoint>
-#include <QPixmap>
-#include <QLabel>
-#include <QPointF>
 #include <QColor>
-#include <QMouseEvent>
 #include <QDebug>
+#include <QLabel>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QPixmap>
+#include <QPoint>
+#include <QPointF>
 
 using std::vector;
 
@@ -42,7 +42,7 @@ public:
 
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
     void refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize);
-    QLabel* getSpriteCanvas();
+    QLabel *getSpriteCanvas();
 
 signals:
     void updatePreviewUi();
@@ -61,11 +61,14 @@ private:
 
     // Draws a pixel at a given position
     void drawPixel(QPoint pixelPosition);
-    void erasePixel (QPoint pixelPoisiton);
+    void erasePixel(QPoint pixelPoisiton);
     bool mouseOnSpriteCanvas(QPoint globalMousePos);
     QPoint getPixelPosition(QPoint mousePos);
 
-    void findAllPaintFillPixels(vector<QPoint> *paintFillPixels, QPoint currentPixelPos, QImage spriteImg, QColor clickedPixelColor);
+    void findAllPaintFillPixels(vector<QPoint> *paintFillPixels,
+                                QPoint currentPixelPos,
+                                QImage spriteImg,
+                                QColor clickedPixelColor);
 
     bool drawing;
 };

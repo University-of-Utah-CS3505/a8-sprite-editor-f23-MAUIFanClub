@@ -1,23 +1,19 @@
 #ifndef SETPIXELSIZEWINDOW_H
 #define SETPIXELSIZEWINDOW_H
 
-#include <QDebug>
 #include <QMainWindow>
-#include "mainwindow.h"
-#include "startupwindow.h"
-#include <cmath>
 
 namespace Ui {
-class SetPixelSizeWindow;
+class setPixelSizeWindow;
 }
 
-class SetPixelSizeWindow : public QMainWindow
+class setPixelSizeWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit SetPixelSizeWindow(QWidget *parent = nullptr);
-    ~SetPixelSizeWindow();
+    explicit setPixelSizeWindow(QWidget *parent = nullptr);
+    ~setPixelSizeWindow();
 
 private slots:
     void on_returnButton_clicked();
@@ -29,7 +25,7 @@ private slots:
     void on_confirmButton_clicked();
 
 private:
-    Ui::SetPixelSizeWindow *ui;
+    Ui::setPixelSizeWindow *ui;
     void updateValues(int width, int height);
     int currentPixelSize = 4;
     int currentPowerOfTwo = 2;
