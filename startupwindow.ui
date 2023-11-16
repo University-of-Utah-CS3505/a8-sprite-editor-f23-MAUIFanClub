@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Sprite Editor</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -173,7 +173,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>879</width>
-     <height>21</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>
