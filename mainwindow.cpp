@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     ui->setupUi(this);
 
     activeTool = new BrushTool();
+    activeToolBtn = ui->brushToolButton;
+    activeToolBtn->setEnabled(false);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
 
@@ -125,7 +127,6 @@ void MainWindow::on_startPreviewButton_clicked()
 }
 
 
-
 void MainWindow::on_stopPreviewButton_clicked() {
 
     animationPreview->stopPreview();
@@ -151,17 +152,29 @@ void MainWindow::on_switchSizeButton_clicked() {
 
 void MainWindow::on_brushToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new BrushTool();
+    activeToolBtn = ui->brushToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_eraseToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new EraseTool();
+    activeToolBtn = ui->eraseToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_paintBucketToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new paintTool();
+    activeToolBtn = ui->paintBucketToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_OneFPSButton_clicked()
@@ -186,4 +199,3 @@ void MainWindow::on_ThirtyFPSButton_clicked()
 {
     animationManager->framesPerSecond = 30;
 }
-

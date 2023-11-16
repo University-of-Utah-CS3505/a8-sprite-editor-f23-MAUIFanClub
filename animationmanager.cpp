@@ -41,7 +41,7 @@ void AnimationManager::createNewFrame()
                      this,
                      &AnimationManager::changeDisplayedFrame);
 
-    frameUiElement->setAlignment(Qt::AlignCenter);
+    frameUiElement->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
@@ -75,7 +75,7 @@ void AnimationManager::createNewFrame(QPixmap map)
                      this,
                      &AnimationManager::changeDisplayedFrame);
 
-    frameUiElement->setAlignment(Qt::AlignCenter);
+    frameUiElement->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;

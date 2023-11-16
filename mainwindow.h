@@ -74,6 +74,8 @@ private:
     FileSystem *fileSystem;
     AnimationPreview *animationPreview;
 
+    QPushButton *activeToolBtn;
+
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
