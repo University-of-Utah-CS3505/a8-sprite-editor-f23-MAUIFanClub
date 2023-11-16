@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     activeTool = new brushTool();
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
-    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize);
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize, true);
     fileSystem = new FileSystem(animationManager, spriteCanvas);
     AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
     connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);

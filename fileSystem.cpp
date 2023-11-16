@@ -19,7 +19,7 @@ FileSystem& FileSystem::operator= (FileSystem other)
 void FileSystem::loadJson(QString filepath)
 {
     QFile loadFile(filepath);
-    if(!loadFile.open(QIODevice::WriteOnly))
+    if(!loadFile.open(QIODevice::ReadOnly))
     {
         qWarning("Could not open file.");
         return;
@@ -31,22 +31,43 @@ void FileSystem::loadJson(QString filepath)
 void FileSystem::readSpritefromJson(const QJsonObject &sprite)
 {
     int size = sprite["frameSize"].toInt();
-    int frameCount = sprite["numFrames"].toInt();
+    int frameCount = sprite["frameCount"].toInt();
 
     QLabel *tempLabel = spriteCanvas->getSpriteCanvas();
     spriteCanvas = new SpriteCanvas(tempLabel, size);
 
+    animationManager->clearAnimationFrames();
     QScrollArea *tempScroll = animationManager->getFramesPanel();
-    animationManager = new AnimationManager(spriteCanvas, tempScroll, size);
+    animationManager = new AnimationManager(spriteCanvas, tempScroll, size, false);
+
+
 
     QJsonArray frameArray = sprite["frames"].toArray();
 
-    QImage tempImage(size, size, QImage::Format_ARGB32);
+
 
     for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
     {
-        QJsonArray framevalues = frameArray[frameIndex].toArray();
+        QImage tempImage(size, size, QImage::Format_ARGB32);
+
+        QJsonObject frameval = frameArray[frameIndex].toObject();
+        QString label = QStringLiteral("frame").append(QString::number(frameIndex));
+        QJsonArray framevalues = frameval[label].toArray();
+
+        foreach(const QJsonValue &v, framevalues)
+        {
+            QJsonObject value = v.toObject();
+            tempImage.setPixelColor(value["x"].toInt(),
+                                    value["y"].toInt(),
+                                    QColor(value["red"].toInt(),
+                                           value["green"].toInt(),
+                                           value["blue"].toInt(),
+                                           value["alpha"].toInt()));
+        }
+        QPixmap map = QPixmap::fromImage(tempImage);
+        animationManager->createNewFrame(map);
     }
+    animationManager->changeDisplayedFrame(0);
 }
 
 void FileSystem::saveSprite(QString filename, int size)

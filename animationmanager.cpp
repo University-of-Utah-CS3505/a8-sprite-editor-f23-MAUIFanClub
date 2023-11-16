@@ -1,14 +1,16 @@
 #include "animationmanager.h"
 
-AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize) : framesPanel(framesPanel), spriteSize(spriteSize)
+AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize, bool createFirstFrame) : framesPanel(framesPanel), spriteSize(spriteSize)
 {
     this->spriteCanvas = spriteCanvas;
 
     animationFrames = vector<AnimationFrame>(0);
-
-    createNewFrame();
+    if(createFirstFrame)
+    {
+        createNewFrame();
 
     changeDisplayedFrame(0);
+    }
 }
 
 
@@ -40,13 +42,14 @@ void AnimationManager::createNewFrame()
     framesPanel->widget()->layout()->addWidget(frameUiElement);
 }
 
-void AnimationManager::createNewFrame(QPixmap *map)
+void AnimationManager::createNewFrame(QPixmap map)
 {
     AnimationFrame newFrame;
 
     int index = animationFrames.size();
 
-    QPixmap *animationPixmap = map;
+    QPixmap *animationPixmap = new QPixmap(spriteSize, spriteSize);
+    *animationPixmap= map.copy();
 
     // Ui Frame Element Creation
     FramePreviewUi *frameUiElement = new FramePreviewUi(index);
@@ -95,4 +98,18 @@ int AnimationManager::getSize()
 QScrollArea *AnimationManager::getFramesPanel()
 {
     return framesPanel;
+}
+void AnimationManager::clearAnimationFrames()
+{
+    for(int i = 0; i < animationFrames.size(); i++)
+    {
+        removeFrame();
+
+    }
+    AnimationFrame *af = &animationFrames[animationFrames.size()-1];
+
+    framesPanel->widget()->layout()->removeWidget(af->uiElement);
+    delete af->uiElement;
+
+    animationFrames.pop_back();
 }
