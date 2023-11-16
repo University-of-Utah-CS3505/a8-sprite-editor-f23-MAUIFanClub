@@ -17,19 +17,9 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
 
     ui->colorPanelLabel->setStyleSheet("* {background-color: black}");
 
-    AnimationPreview *animationPreview = new AnimationPreview(animationManager->framesPerSecond,
-                                                              animationManager->animationFrames,
-                                                              nullptr);
-
-    connect(ui->StartPreview,
-            &QAction::triggered,
-            animationPreview,
-            &AnimationPreview::startPreview);
-    connect(ui->startPreviewButton,
-            &QPushButton::clicked,
-            animationPreview,
-            &AnimationPreview::startPreview);
-
+    animationPreview = new AnimationPreview(
+        animationManager->animationFrames,
+        nullptr);
     connect(spriteCanvas,
             &SpriteCanvas::updatePreviewUi,
             animationManager,
@@ -121,19 +111,40 @@ void MainWindow::on_removeFrameBtn_clicked()
 
 /* -- Preview Button Press Events -- */
 
-void MainWindow::on_StartPreview_triggered()
-{
-    animationPreview->startPreview();
-}
 
 void MainWindow::on_startPreviewButton_clicked()
 {
-    animationPreview->startPreview();
+    animationPreview->startPreview(animationManager, false);
+    ui->OneFPSButton->setEnabled(false);
+    ui->TenFPSButton->setEnabled(false);
+    ui->TwentyFPSButton->setEnabled(false);
+    ui->ThirtyFPSButton->setEnabled(false);
+    ui->startPreviewButton->setEnabled(false);
+    ui->switchSizeButton->setEnabled(false);
 }
 
-void MainWindow::on_switchSizeButton_clicked() {}
 
-void MainWindow::on_stopPreviewButton_clicked() {}
+
+void MainWindow::on_stopPreviewButton_clicked() {
+
+    animationPreview->stopPreview();
+    ui->OneFPSButton->setEnabled(true);
+    ui->TenFPSButton->setEnabled(true);
+    ui->TwentyFPSButton->setEnabled(true);
+    ui->ThirtyFPSButton->setEnabled(true);
+    ui->startPreviewButton->setEnabled(true);
+    ui->switchSizeButton->setEnabled(true);
+}
+
+void MainWindow::on_switchSizeButton_clicked() {
+    animationPreview->startPreview(animationManager, true);
+    ui->OneFPSButton->setEnabled(false);
+    ui->TenFPSButton->setEnabled(false);
+    ui->TwentyFPSButton->setEnabled(false);
+    ui->ThirtyFPSButton->setEnabled(false);
+    ui->startPreviewButton->setEnabled(false);
+    ui->switchSizeButton->setEnabled(false);
+}
 
 void MainWindow::on_brushToolButton_clicked()
 {
@@ -149,3 +160,27 @@ void MainWindow::on_paintBucketToolButton_clicked()
 {
     activeTool = new paintTool();
 }
+
+void MainWindow::on_OneFPSButton_clicked()
+{
+    animationManager->framesPerSecond = 1;
+}
+
+
+void MainWindow::on_TenFPSButton_clicked()
+{
+    animationManager->framesPerSecond = 10;
+}
+
+
+void MainWindow::on_TwentyFPSButton_clicked()
+{
+    animationManager->framesPerSecond = 20;
+}
+
+
+void MainWindow::on_ThirtyFPSButton_clicked()
+{
+    animationManager->framesPerSecond = 30;
+}
+

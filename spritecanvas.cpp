@@ -4,7 +4,7 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 {
     spriteCanvasSize = spriteCanvas->width();
     this->spriteSize = spriteSize;
-
+    spriteCanvas->setAlignment(Qt::AlignCenter);
     spritePixmap = new QPixmap(spriteSize, spriteSize);
     spritePixmap->fill(Qt::color0);
 

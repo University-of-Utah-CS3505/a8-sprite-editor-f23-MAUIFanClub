@@ -9,7 +9,6 @@
 #include "framepreviewui.h"
 #include "spritecanvas.h"
 #include "undoredomanager.h"
-
 using std::vector;
 
 class AnimationManager : public QObject
@@ -39,6 +38,8 @@ public:
 
     void clearAnimationFrames(int);
 
+    SpriteCanvas *spriteCanvas;
+
     QScrollArea *getFramesPanel();
 signals:
 
@@ -51,13 +52,12 @@ public slots:
 
 private:
     QTimer updatePreviewTimer;
-
     int spriteSize;
     int currentFrameIndex;
 
     QScrollArea *framesPanel;
 
-    SpriteCanvas *spriteCanvas;
+
 
     UndoRedoManager *undoRedoManager;
 };

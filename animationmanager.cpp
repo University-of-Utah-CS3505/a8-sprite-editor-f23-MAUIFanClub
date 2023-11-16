@@ -7,6 +7,7 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
     : framesPanel(framesPanel)
     , spriteSize(spriteSize)
     , spriteCanvas(spriteCanvas)
+    , framesPerSecond(30)
 {
     undoRedoManager = new UndoRedoManager();
 
@@ -14,6 +15,7 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
     if (createFirstFrame) {
         createNewFrame();
         changeDisplayedFrame(0);
+
     }
 }
 
@@ -38,7 +40,7 @@ void AnimationManager::createNewFrame()
                      &FramePreviewUi::clicked,
                      this,
                      &AnimationManager::changeDisplayedFrame);
-
+    frameUiElement->setAlignment(Qt::AlignCenter);
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
     newFrame.uiElement = frameUiElement;
@@ -69,7 +71,7 @@ void AnimationManager::createNewFrame(QPixmap map)
                      &FramePreviewUi::clicked,
                      this,
                      &AnimationManager::changeDisplayedFrame);
-
+    frameUiElement->setAlignment(Qt::AlignCenter);
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
     newFrame.uiElement = frameUiElement;

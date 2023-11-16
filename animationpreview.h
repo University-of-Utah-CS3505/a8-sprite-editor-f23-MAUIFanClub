@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QThread>
-#include "animationmanager.h"
 #include "spritecanvas.h"
+#include "animationmanager.h"
 #include <iostream>
 
 class AnimationPreview : public QObject
@@ -12,15 +12,19 @@ class AnimationPreview : public QObject
     Q_OBJECT
 
 public:
-    AnimationPreview(int frameRate,
-                     const std::vector<AnimationManager::AnimationFrame> &framesToAnimate,
-                     QObject *parent = nullptr);
+    AnimationPreview(
+        const std::vector<AnimationManager::AnimationFrame> &framesToAnimate,
+        QObject *parent = nullptr);
 
     vector<AnimationManager::AnimationFrame> framesToAnimate;
-    int i_frameRate;
-
+    int currentFrame;
+    void advanceFrame();
+    QTimer *timer;
+    bool actualSize;
+    AnimationManager* tempManager;
 public slots:
-    void startPreview();
+    void startPreview(AnimationManager*, bool allowingPlay);
+    void stopPreview();
 };
 
 #endif // ANIMATIONPREVIEW_H

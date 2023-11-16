@@ -249,8 +249,8 @@ background-color:gray;
             <widget class="QPushButton" name="startPreviewButton">
              <property name="geometry">
               <rect>
-               <x>80</x>
-               <y>30</y>
+               <x>20</x>
+               <y>20</y>
                <width>80</width>
                <height>24</height>
               </rect>
@@ -262,27 +262,79 @@ background-color:gray;
             <widget class="QPushButton" name="switchSizeButton">
              <property name="geometry">
               <rect>
-               <x>80</x>
-               <y>90</y>
-               <width>80</width>
+               <x>50</x>
+               <y>60</y>
+               <width>131</width>
                <height>24</height>
               </rect>
              </property>
              <property name="text">
-              <string>Switch Size</string>
+              <string>Preview Real Size</string>
              </property>
             </widget>
             <widget class="QPushButton" name="stopPreviewButton">
              <property name="geometry">
               <rect>
-               <x>80</x>
-               <y>60</y>
+               <x>130</x>
+               <y>20</y>
                <width>80</width>
                <height>24</height>
               </rect>
              </property>
              <property name="text">
               <string>Stop Preview</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="OneFPSButton">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>190</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>1 FPS</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="TenFPSButton">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>190</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>10 FPS</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="TwentyFPSButton">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>250</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>20 FPS</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="ThirtyFPSButton">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>250</y>
+               <width>80</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>30 FPS</string>
              </property>
             </widget>
            </widget>
@@ -463,7 +515,7 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">

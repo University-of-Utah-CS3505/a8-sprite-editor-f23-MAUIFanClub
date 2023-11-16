@@ -37,8 +37,6 @@ private slots:
     void on_redoBtn_clicked();
     void on_clearBtn_clicked();
     void on_colorBtn_clicked();
-    //void on_actionAnimationPreview_triggered();
-    void on_StartPreview_triggered();
 
     void on_startPreviewButton_clicked();
 
@@ -55,6 +53,14 @@ private slots:
     void on_removeFrameBtn_clicked();
 
     void on_actionSave_triggered();
+    void on_OneFPSButton_clicked();
+
+    void on_TenFPSButton_clicked();
+
+    void on_TwentyFPSButton_clicked();
+
+    void on_ThirtyFPSButton_clicked();
+
 public slots:
     void on_actionLoad_triggered();
 
