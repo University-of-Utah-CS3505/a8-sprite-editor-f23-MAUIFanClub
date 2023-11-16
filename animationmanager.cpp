@@ -11,11 +11,11 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
 {
     undoRedoManager = new UndoRedoManager();
 
+    framesPanel->widget()->layout()->setAlignment(Qt::AlignHCenter);
+
     animationFrames = vector<AnimationFrame>(0);
     if (createFirstFrame) {
         createNewFrame();
-        changeDisplayedFrame(0);
-
     }
 }
 
@@ -40,7 +40,9 @@ void AnimationManager::createNewFrame()
                      &FramePreviewUi::clicked,
                      this,
                      &AnimationManager::changeDisplayedFrame);
+
     frameUiElement->setAlignment(Qt::AlignCenter);
+
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
     newFrame.uiElement = frameUiElement;
@@ -48,6 +50,7 @@ void AnimationManager::createNewFrame()
     animationFrames.push_back(newFrame);
 
     framesPanel->widget()->layout()->addWidget(frameUiElement);
+    changeDisplayedFrame(animationFrames.size()-1);
 }
 
 void AnimationManager::createNewFrame(QPixmap map)
@@ -71,7 +74,9 @@ void AnimationManager::createNewFrame(QPixmap map)
                      &FramePreviewUi::clicked,
                      this,
                      &AnimationManager::changeDisplayedFrame);
+
     frameUiElement->setAlignment(Qt::AlignCenter);
+
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
     newFrame.uiElement = frameUiElement;
@@ -79,6 +84,7 @@ void AnimationManager::createNewFrame(QPixmap map)
     animationFrames.push_back(newFrame);
 
     framesPanel->widget()->layout()->addWidget(frameUiElement);
+    changeDisplayedFrame(animationFrames.size()-1);
 }
 
 void AnimationManager::removeFrame()
@@ -88,14 +94,17 @@ void AnimationManager::removeFrame()
 
     undoRedoManager->removedFrameUpdateStacks(animationFrames.back().animationPixmap);
 
-    AnimationFrame *af = &animationFrames[animationFrames.size() - 1];
+    int removedFrameIndex = animationFrames.size() - 1;
+
+    AnimationFrame *af = &animationFrames[removedFrameIndex];
+
+    if (currentFrameIndex == removedFrameIndex)
+        changeDisplayedFrame(--currentFrameIndex);
 
     framesPanel->widget()->layout()->removeWidget(af->uiElement);
     delete af->uiElement;
 
     animationFrames.pop_back();
-
-    changeDisplayedFrame(animationFrames.size() - 1);
 }
 
 void AnimationManager::changeDisplayedFrame(int index)

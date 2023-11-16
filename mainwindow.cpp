@@ -115,6 +115,7 @@ void MainWindow::on_removeFrameBtn_clicked()
 void MainWindow::on_startPreviewButton_clicked()
 {
     animationPreview->startPreview(animationManager, false);
+    ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
     ui->TwentyFPSButton->setEnabled(false);
@@ -128,6 +129,7 @@ void MainWindow::on_startPreviewButton_clicked()
 void MainWindow::on_stopPreviewButton_clicked() {
 
     animationPreview->stopPreview();
+    ui->stopPreviewButton->setEnabled(false);
     ui->OneFPSButton->setEnabled(true);
     ui->TenFPSButton->setEnabled(true);
     ui->TwentyFPSButton->setEnabled(true);
@@ -138,6 +140,7 @@ void MainWindow::on_stopPreviewButton_clicked() {
 
 void MainWindow::on_switchSizeButton_clicked() {
     animationPreview->startPreview(animationManager, true);
+    ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
     ui->TwentyFPSButton->setEnabled(false);

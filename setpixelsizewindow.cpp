@@ -33,7 +33,7 @@ void setPixelSizeWindow::on_returnButton_clicked()
 }
 void setPixelSizeWindow::on_pixelIncrease_Button_clicked()
 {
-    if (currentPowerOfTwo == 9)
+    if (currentPowerOfTwo == 7)
         return;
     currentPowerOfTwo++;
     currentPixelSize = std::pow(2, currentPowerOfTwo);
@@ -42,7 +42,7 @@ void setPixelSizeWindow::on_pixelIncrease_Button_clicked()
 
 void setPixelSizeWindow::on_pixelDecrease_Button_clicked()
 {
-    if (currentPowerOfTwo == 0)
+    if (currentPowerOfTwo == 2)
         return;
     currentPowerOfTwo--;
     currentPixelSize = std::pow(2, currentPowerOfTwo);
