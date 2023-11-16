@@ -24,7 +24,7 @@ void StartupWindow::on_openProjectButton_clicked()
 
 void StartupWindow::on_newProjectButton_clicked()
 {
-    setPixelSizeWindow *x = new setPixelSizeWindow();
+    SetPixelSizeWindow *x = new SetPixelSizeWindow();
     x->show();
     this->close();
 }

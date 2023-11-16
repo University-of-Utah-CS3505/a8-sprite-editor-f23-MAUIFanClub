@@ -147,10 +147,6 @@ void AnimationManager::redoAction()
     spriteCanvas->changePixmap(animationFrames[currentFrameIndex].animationPixmap);
 }
 
-QScrollArea *AnimationManager::getFramesPanel()
-{
-    return framesPanel;
-}
 void AnimationManager::clearAnimationFrames(int size)
 {
     spriteSize = size;

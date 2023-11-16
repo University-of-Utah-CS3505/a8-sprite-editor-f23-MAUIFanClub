@@ -22,6 +22,7 @@ public:
     QTimer *timer;
     bool actualSize;
     AnimationManager* tempManager;
+    bool isPlaying = false;
 public slots:
     void startPreview(AnimationManager*, bool allowingPlay);
     void stopPreview();

@@ -4,16 +4,16 @@
 #include <QMainWindow>
 
 namespace Ui {
-class setPixelSizeWindow;
+class SetPixelSizeWindow;
 }
 
-class setPixelSizeWindow : public QMainWindow
+class SetPixelSizeWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit setPixelSizeWindow(QWidget *parent = nullptr);
-    ~setPixelSizeWindow();
+    explicit SetPixelSizeWindow(QWidget *parent = nullptr);
+    ~SetPixelSizeWindow();
 
 private slots:
     void on_returnButton_clicked();
@@ -25,7 +25,7 @@ private slots:
     void on_confirmButton_clicked();
 
 private:
-    Ui::setPixelSizeWindow *ui;
+    Ui::SetPixelSizeWindow *ui;
     void updateValues(int width, int height);
     int currentPixelSize = 4;
     int currentPowerOfTwo = 2;
