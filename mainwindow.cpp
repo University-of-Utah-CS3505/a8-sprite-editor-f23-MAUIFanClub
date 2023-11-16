@@ -83,7 +83,7 @@ void MainWindow::on_colorBtn_clicked()
     QColor selectedColor = colorSelectionWindow.getColor();
     //colorPanelLabel
     QString formattedColor = selectedColor.name();
-    ui->colorPickerFrame->setStyleSheet("* {background-color: " + formattedColor + "}");
+    ui->colorPanelLabel->setStyleSheet("* {background-color: " + formattedColor + "}");
 
     spriteCanvas->setPixelColor(selectedColor);
 }
