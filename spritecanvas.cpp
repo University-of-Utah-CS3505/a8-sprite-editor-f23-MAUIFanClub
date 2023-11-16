@@ -13,6 +13,20 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 
     this->spriteCanvas = spriteCanvas;
 }
+void SpriteCanvas::refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize)
+{
+    spriteCanvasSize = spriteCanvas->width();
+    this->spriteSize = spriteSize;
+
+    spritePixmap = new QPixmap(spriteSize,spriteSize);
+    spritePixmap->fill(Qt::lightGray);
+
+    painter.begin(spritePixmap);
+    spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+
+    this->spriteCanvas = spriteCanvas;
+
+}
 
 void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
 {

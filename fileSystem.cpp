@@ -34,7 +34,7 @@ void FileSystem::readSpritefromJson(const QJsonObject &sprite)
     int frameCount = sprite["frameCount"].toInt();
 
     QLabel *tempLabel = spriteCanvas->getSpriteCanvas();
-    spriteCanvas = new SpriteCanvas(tempLabel, size);
+    spriteCanvas->refreshSpriteCanvas(tempLabel, size);
 
     animationManager->clearAnimationFrames();
     QScrollArea *tempScroll = animationManager->getFramesPanel();

@@ -37,7 +37,7 @@ public:
     void changePixmap(QPixmap *newPixmap);
 
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
-
+    void refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize);
     QLabel* getSpriteCanvas();
 
 signals:

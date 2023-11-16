@@ -30,6 +30,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
+    fileSystem->saveSprite(filename, spriteSize);
+}
+
+
+void MainWindow::on_actionLoad_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
+    fileSystem->loadJson(filename);
+}
+
 /* -- Mouse Events -- */
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
@@ -115,16 +128,5 @@ void MainWindow::on_eraseToolButton_clicked()
 }
 
 
-void MainWindow::on_actionSave_triggered()
-{
-    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
-    fileSystem->saveSprite(filename, spriteSize);
-}
 
-
-void MainWindow::on_actionLoad_triggered()
-{
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
-    fileSystem->loadJson(filename);
-}
 
