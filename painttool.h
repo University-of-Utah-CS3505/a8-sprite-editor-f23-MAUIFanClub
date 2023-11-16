@@ -2,6 +2,7 @@
 #ifndef PAINTTOOL_H
 #define PAINTTOOL_H
 #include "tool_parent.h"
+#include <QPoint>
 //The paint tool for filling in sections of a frame based on if the pixels around the selected pixel are the same color
 class paintTool : public Tool_Parent
 {

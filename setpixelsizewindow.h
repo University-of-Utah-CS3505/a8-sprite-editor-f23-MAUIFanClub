@@ -5,18 +5,18 @@
 #include <QMainWindow>
 
 namespace Ui {
-class SetPixelSizeWindow;
+class setPixelSizeWindow;
 }
 //The window that pops up for a new project to set the pixel size
-class SetPixelSizeWindow : public QMainWindow
+class setPixelSizeWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
     //The constructor to create the window to allow the user to set the pixel size of a project
-    explicit SetPixelSizeWindow(QWidget *parent = nullptr);
+    explicit setPixelSizeWindow(QWidget *parent = nullptr);
     //destructor
-    ~SetPixelSizeWindow();
+    ~setPixelSizeWindow();
 
 private slots:
     //Slot for when the return button is pressed, takes the user back to the main menu
@@ -30,7 +30,7 @@ private slots:
 
 private:
     //UI element for the window
-    Ui::SetPixelSizeWindow *ui;
+    Ui::setPixelSizeWindow *ui;
     //Updates the sprite size
     void updateValues(int width, int height);
     //variable for the default size

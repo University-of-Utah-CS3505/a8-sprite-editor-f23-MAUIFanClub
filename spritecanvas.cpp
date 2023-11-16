@@ -9,6 +9,8 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
     spritePixmap = new QPixmap(spriteSize, spriteSize);
     spritePixmap->fill(Qt::color0);
 
+    canDraw = true;
+
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize,
                                                  spriteCanvasSize,
@@ -39,7 +41,7 @@ void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
 {
     QPoint localMousePos = spriteCanvas->mapFromGlobal(globalMousePos);
 
-    if (!mouseOnSpriteCanvas(localMousePos))
+    if (!mouseOnSpriteCanvas(localMousePos) || !canDraw)
         return;
 
     emit startAction();

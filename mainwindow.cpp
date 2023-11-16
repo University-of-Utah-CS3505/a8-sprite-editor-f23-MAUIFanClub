@@ -118,6 +118,9 @@ void MainWindow::on_removeFrameBtn_clicked()
 void MainWindow::on_startPreviewButton_clicked()
 {
     animationPreview->startPreview(animationManager, false);
+    spriteCanvas->canDraw = false;
+
+    ui->frameSlider->setEnabled(false);
     ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
@@ -128,9 +131,12 @@ void MainWindow::on_startPreviewButton_clicked()
 }
 
 
-void MainWindow::on_stopPreviewButton_clicked() {
-
+void MainWindow::on_stopPreviewButton_clicked()
+{
     animationPreview->stopPreview();
+    spriteCanvas->canDraw = true;
+
+    ui->frameSlider->setEnabled(true);
     ui->stopPreviewButton->setEnabled(false);
     ui->OneFPSButton->setEnabled(true);
     ui->TenFPSButton->setEnabled(true);
@@ -140,8 +146,12 @@ void MainWindow::on_stopPreviewButton_clicked() {
     ui->switchSizeButton->setEnabled(true);
 }
 
-void MainWindow::on_switchSizeButton_clicked() {
+void MainWindow::on_switchSizeButton_clicked()
+{
     animationPreview->startPreview(animationManager, true);
+    spriteCanvas->canDraw = false;
+
+    ui->frameSlider->setEnabled(false);
     ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
@@ -216,13 +226,4 @@ void MainWindow::on_frameSlider_valueChanged(int value)
 
     animationManager->framesPerSecond = value;
     ui->FPSText->setText(QString::number(value));
-}
-
-void MainWindow::on_horizontalSlider_actionTriggered(int action)
-{
-}
-
-
-void MainWindow::on_horizontalSlider_valueChanged(int value)
-{
 }
