@@ -1,3 +1,4 @@
+//Reviewed by: Aidan Bott
 #include "animationpreview.h"
 
 
@@ -11,6 +12,7 @@ AnimationPreview::AnimationPreview(
 
 void AnimationPreview::startPreview(AnimationManager* animationManager, bool actualSize)
 {
+    isPlaying = true;
     this->actualSize = actualSize;
     currentFrame = 0;
     tempManager = animationManager;
@@ -20,7 +22,7 @@ void AnimationPreview::startPreview(AnimationManager* animationManager, bool act
 
 }
 void AnimationPreview::stopPreview() {
-
+    isPlaying = false;
     timer->stop();
     tempManager->changeDisplayedFrame(0);
 }

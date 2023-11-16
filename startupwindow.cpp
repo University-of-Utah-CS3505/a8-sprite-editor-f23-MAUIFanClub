@@ -1,3 +1,4 @@
+//Reviewed by: Joshua Daniels
 #include "startupwindow.h"
 #include "ui_startupwindow.h"
 
@@ -17,14 +18,14 @@ StartupWindow::~StartupWindow()
 void StartupWindow::on_openProjectButton_clicked()
 {
     MainWindow *x = new MainWindow(nullptr, 4);
-    this->close();
     x->show();
     x->on_actionLoad_triggered();
+    this->close();
 }
 
 void StartupWindow::on_newProjectButton_clicked()
 {
-    setPixelSizeWindow *x = new setPixelSizeWindow();
+    SetPixelSizeWindow *x = new SetPixelSizeWindow();
     x->show();
     this->close();
 }

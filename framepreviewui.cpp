@@ -1,3 +1,4 @@
+//Reviewed by: Noah Guidry
 #include "framepreviewui.h"
 
 FramePreviewUi::FramePreviewUi(int index, QWidget *parent, Qt::WindowFlags f)

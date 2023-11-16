@@ -1,3 +1,4 @@
+//Reviewed by: George Guo
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -7,6 +8,7 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QString>
 #include "animationmanager.h"
 #include "animationpreview.h"
 #include "brushTool.h"
@@ -60,6 +62,12 @@ private slots:
     void on_TwentyFPSButton_clicked();
 
     void on_ThirtyFPSButton_clicked();
+
+    void on_horizontalSlider_actionTriggered(int action);
+
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_frameSlider_valueChanged(int value);
 
 public slots:
     void on_actionLoad_triggered();

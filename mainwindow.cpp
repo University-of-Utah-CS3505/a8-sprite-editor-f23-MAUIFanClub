@@ -1,3 +1,4 @@
+//Reviewed by: George Guo
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -180,22 +181,48 @@ void MainWindow::on_paintBucketToolButton_clicked()
 void MainWindow::on_OneFPSButton_clicked()
 {
     animationManager->framesPerSecond = 1;
+    ui->FPSText->setText(QString::number(1));
+    ui->frameSlider->setValue(1);
 }
 
 
 void MainWindow::on_TenFPSButton_clicked()
 {
     animationManager->framesPerSecond = 10;
+    ui->FPSText->setText(QString::number(10));
+    ui->frameSlider->setValue(10);
 }
 
 
 void MainWindow::on_TwentyFPSButton_clicked()
 {
     animationManager->framesPerSecond = 20;
+    ui->FPSText->setText(QString::number(20));
+    ui->frameSlider->setValue(20);
 }
 
 
 void MainWindow::on_ThirtyFPSButton_clicked()
 {
     animationManager->framesPerSecond = 30;
+    ui->FPSText->setText(QString::number(30));
+    ui->frameSlider->setValue(30);
+}
+
+void MainWindow::on_frameSlider_valueChanged(int value)
+{
+    if(animationPreview->isPlaying)
+        on_stopPreviewButton_clicked();
+
+    animationManager->framesPerSecond = value;
+    ui->FPSText->setText(QString::number(value));
+}
+
+void MainWindow::on_horizontalSlider_actionTriggered(int action)
+{
+}
+
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
 }

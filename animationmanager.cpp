@@ -1,3 +1,4 @@
+//Reviewed by: Drew Fenter
 #include "animationmanager.h"
 
 AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
@@ -156,10 +157,6 @@ void AnimationManager::redoAction()
     spriteCanvas->changePixmap(animationFrames[currentFrameIndex].animationPixmap);
 }
 
-QScrollArea *AnimationManager::getFramesPanel()
-{
-    return framesPanel;
-}
 void AnimationManager::clearAnimationFrames(int size)
 {
     spriteSize = size;
