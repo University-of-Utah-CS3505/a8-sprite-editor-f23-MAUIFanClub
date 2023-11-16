@@ -10,7 +10,6 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
-    undoRedoManager = new UndoRedoManager();
 
     this->spriteCanvas = spriteCanvas;
 }
@@ -21,7 +20,8 @@ void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
 
     if (!mouseOnSpriteCanvas(localMousePos)) return;
 
-    undoRedoManager->StartAction(*spritePixmap);
+    emit startAction();
+
     drawing = true;
     if(isDraw)
     {
@@ -31,7 +31,6 @@ void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
     {
         erasePixel(getPixelPosition(localMousePos));
     }
-
 }
 
 void SpriteCanvas::mouseMove(QPoint globalMousePos, bool isDraw)
@@ -47,19 +46,19 @@ void SpriteCanvas::mouseMove(QPoint globalMousePos, bool isDraw)
     {
         erasePixel(getPixelPosition(localMousePos));
     }
-
 }
 
 void SpriteCanvas::mouseRelease()
 {
     if (!drawing) return;
 
-    undoRedoManager->EndAction(*spritePixmap);
+    emit endAction();
+
     drawing = false;
 
     lastDrawnPixel = QPoint(-1,-1);
 
-    previewFrameUi->setPixmap(spritePixmap->scaled(QSize(128,128)));
+    emit updatePreviewUi();
 }
 
 bool SpriteCanvas::mouseOnSpriteCanvas(QPoint localMousePos)
@@ -96,6 +95,7 @@ void SpriteCanvas::drawPixel(QPoint pixelPosition)
     // Updates the paintLabel image to the new canvas.
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
+
 void SpriteCanvas::erasePixel(QPoint pixelPosition)
 {
     if (pixelPosition == lastDrawnPixel) return;
@@ -115,13 +115,14 @@ void SpriteCanvas::erasePixel(QPoint pixelPosition)
     // Updates the paintLabel image to the new canvas.
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
+
 void SpriteCanvas::clearCanvas()
 {
-    undoRedoManager->StartAction(*spritePixmap);
+    emit startAction();
 
     spritePixmap->fill(Qt::lightGray);
 
-    undoRedoManager->EndAction(*spritePixmap);
+    emit endAction();
 
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
 }
@@ -129,7 +130,9 @@ void SpriteCanvas::clearCanvas()
 void SpriteCanvas::changePixmap(QPixmap *newPixmap)
 {
     spritePixmap = newPixmap;
-    painter.end();
+
+    if (painter.isActive())
+        painter.end();
 
     painter.begin(spritePixmap);
     spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
@@ -138,16 +141,6 @@ void SpriteCanvas::changePixmap(QPixmap *newPixmap)
 void SpriteCanvas::setPixelColor(QColor color)
 {
     pixelColor = color;
-}
-
-void SpriteCanvas::undoAction()
-{
-    undoRedoManager->undo(&painter, spriteCanvas, spritePixmap, spriteCanvasSize);
-}
-
-void SpriteCanvas::redoAction()
-{
-    undoRedoManager->redo(&painter, spriteCanvas, spritePixmap, spriteCanvasSize);
 }
 
 void SpriteCanvas::displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize)

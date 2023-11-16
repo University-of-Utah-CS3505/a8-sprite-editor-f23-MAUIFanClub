@@ -8,6 +8,7 @@
 #include <QTimer>
 #include "spritecanvas.h"
 #include "framepreviewui.h"
+#include "undoredomanager.h"
 
 using std::vector;
 
@@ -29,6 +30,10 @@ public:
     void createNewFrame();
     void createNewFrame(QPixmap);
     void removeFrame();
+
+    void undoAction();
+    void redoAction();
+
     int getSize();
     void clearAnimationFrames();
     QScrollArea *getFramesPanel();
@@ -36,15 +41,22 @@ signals:
 
 public slots:
     void changeDisplayedFrame(int index);
+    void updateFramePreviewElements();
+
+    void startAction();
+    void endAction();
 
 private:
     QTimer updatePreviewTimer;
 
     int spriteSize;
+    int currentFrameIndex;
 
     QScrollArea *framesPanel;
 
     SpriteCanvas *spriteCanvas;
+
+    UndoRedoManager *undoRedoManager;
 };
 
 #endif // ANIMATIONMANAGER_H

@@ -1,18 +1,16 @@
 #include "animationmanager.h"
 
-AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize, bool createFirstFrame) : framesPanel(framesPanel), spriteSize(spriteSize)
+AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize, bool createFirstFrame) : framesPanel(framesPanel), spriteSize(spriteSize), spriteCanvas(spriteCanvas)
 {
-    this->spriteCanvas = spriteCanvas;
+    undoRedoManager = new UndoRedoManager();
 
     animationFrames = vector<AnimationFrame>(0);
     if(createFirstFrame)
     {
         createNewFrame();
-
-    changeDisplayedFrame(0);
+        changeDisplayedFrame(0);
     }
 }
-
 
 void AnimationManager::createNewFrame()
 {
@@ -74,6 +72,8 @@ void AnimationManager::removeFrame()
 {
     if (animationFrames.size() == 1) return;
 
+    undoRedoManager->removedFrameUpdateStacks(animationFrames.back().animationPixmap);
+
     AnimationFrame *af = &animationFrames[animationFrames.size()-1];
 
     framesPanel->widget()->layout()->removeWidget(af->uiElement);
@@ -86,8 +86,46 @@ void AnimationManager::removeFrame()
 
 void AnimationManager::changeDisplayedFrame(int index)
 {
-    spriteCanvas->previewFrameUi = animationFrames[index].uiElement;
+    currentFrameIndex = index;
     spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
+}
+
+void AnimationManager::updateFramePreviewElements()
+{
+    for (int i = 0; i < animationFrames.size(); i++)
+    {
+        animationFrames[i].uiElement->setPixmap(animationFrames[i].animationPixmap->scaled(QSize(128,128)));
+    }
+}
+
+void AnimationManager::startAction()
+{
+    undoRedoManager->startAction(animationFrames[currentFrameIndex].animationPixmap, *animationFrames[currentFrameIndex].animationPixmap);
+}
+
+void AnimationManager::endAction()
+{
+    undoRedoManager->endAction(*animationFrames[currentFrameIndex].animationPixmap);
+}
+
+void AnimationManager::undoAction()
+{
+    spriteCanvas->painter.end();
+
+    undoRedoManager->undo();
+    updateFramePreviewElements();
+
+    spriteCanvas->changePixmap(animationFrames[currentFrameIndex].animationPixmap);
+}
+
+void AnimationManager::redoAction()
+{
+    spriteCanvas->painter.end();
+
+    undoRedoManager->redo();
+    updateFramePreviewElements();
+
+    spriteCanvas->changePixmap(animationFrames[currentFrameIndex].animationPixmap);
 }
 
 int AnimationManager::getSize()

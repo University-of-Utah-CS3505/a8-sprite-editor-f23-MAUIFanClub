@@ -1,6 +1,7 @@
 #ifndef SPRITECANVAS_H
 #define SPRITECANVAS_H
 
+#include <QPainter>
 #include <QPoint>
 #include <QPixmap>
 #include <QLabel>
@@ -8,17 +9,17 @@
 #include <QColor>
 #include <QMouseEvent>
 #include <QDebug>
-#include "undoredomanager.h"
-#include "framepreviewui.h"
 
-class SpriteCanvas
+class SpriteCanvas : public QObject
 {
+    Q_OBJECT
 public:
-    UndoRedoManager* undoRedoManager;
-
     SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
 
-    FramePreviewUi *previewFrameUi;
+    QPainter painter;
+    QLabel *spriteCanvas;
+    int spriteCanvasSize;
+    QPixmap *spritePixmap;
 
     void changePixmap(QPixmap newPixmap);
 
@@ -37,16 +38,18 @@ public:
 
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
 
+    QLabel* getSpriteCanvas();
+
+signals:
+    void updatePreviewUi();
+    void startAction();
+    void endAction();
+
     void undoAction();
     void redoAction();
-    QLabel* getSpriteCanvas();
-private:
-    QPixmap *spritePixmap;
-    QPainter painter;
-    QLabel *spriteCanvas;
-    QColor pixelColor;
 
-    int spriteCanvasSize;
+private:
+    QColor pixelColor;
     int spriteSize;
 
     // Used to make sure if the mouse is held down on the same pixel it doesnt set the pixel repeatedly without moving first.

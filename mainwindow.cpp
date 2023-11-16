@@ -11,11 +11,18 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     activeTool = new brushTool();
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
+
     animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize, true);
     fileSystem = new FileSystem(animationManager, spriteCanvas);
+
     AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
+
     connect(ui->StartPreview, &QAction::triggered, animationPreview, &AnimationPreview::startPreview);
     connect(ui->startPreviewButton, &QPushButton::clicked, animationPreview, &AnimationPreview::startPreview);
+
+    connect(spriteCanvas, &SpriteCanvas::updatePreviewUi, animationManager, &AnimationManager::updateFramePreviewElements);
+    connect(spriteCanvas, &SpriteCanvas::startAction, animationManager, &AnimationManager::startAction);
+    connect(spriteCanvas, &SpriteCanvas::endAction, animationManager, &AnimationManager::endAction);
 }
 
 MainWindow::~MainWindow()
@@ -44,12 +51,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWindow::on_undoBtn_clicked()
 {
-    spriteCanvas->undoAction();
+    animationManager->undoAction();
 }
 
 void MainWindow::on_redoBtn_clicked()
 {
-    spriteCanvas->redoAction();
+    animationManager->redoAction();
 }
 
 void MainWindow::on_clearBtn_clicked()
