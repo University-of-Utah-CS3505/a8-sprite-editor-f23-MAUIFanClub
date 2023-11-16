@@ -12,6 +12,7 @@ AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
 {
     undoRedoManager = new UndoRedoManager();
 
+    currentFrameIndex = 0;
     framesPanel->widget()->layout()->setAlignment(Qt::AlignHCenter);
 
     animationFrames = vector<AnimationFrame>(0);
