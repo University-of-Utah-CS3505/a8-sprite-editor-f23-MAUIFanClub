@@ -5,6 +5,9 @@
 #include <stack>
 #include <QPainter>
 #include <QLabel>
+#include "framepreviewui.h"
+
+using std::vector;
 
 class UndoRedoManager
 {
@@ -13,15 +16,19 @@ public:
 
     struct DrawAction
     {
+        FramePreviewUi *framePreviewUi;
+        QPixmap *framePixmapPtr;
         QPixmap newState;
         QPixmap previousState;
     };
 
-    void StartAction(QPixmap oldPixmap);
-    void EndAction(QPixmap newPixmap);
+    void startAction(QPixmap* framePixmapPtr, QPixmap oldPixmap);
+    void endAction(QPixmap newPixmap);
 
-    void undo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize);
-    void redo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize);
+    void undo();
+    void redo();
+
+    void removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr);
 private:
     std::stack<DrawAction> undoStack;
     std::stack<DrawAction> redoStack;

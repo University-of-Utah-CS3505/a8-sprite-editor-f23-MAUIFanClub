@@ -3,15 +3,16 @@
 
 UndoRedoManager::UndoRedoManager() { }
 
-void UndoRedoManager::StartAction(QPixmap oldPixmap)
+void UndoRedoManager::startAction(QPixmap* framePixmapPtr, QPixmap oldPixmap)
 {
     // Clears redoStack if it contains actions
     if (!redoStack.empty()) redoStack = std::stack<DrawAction>();
 
+    currentAction.framePixmapPtr = framePixmapPtr;
     currentAction.previousState = oldPixmap.copy();
 }
 
-void UndoRedoManager::EndAction(QPixmap newPixmap)
+void UndoRedoManager::endAction(QPixmap newPixmap)
 {
     currentAction.newState = newPixmap.copy();
 
@@ -19,47 +20,57 @@ void UndoRedoManager::EndAction(QPixmap newPixmap)
     currentAction = {};
 }
 
-void UndoRedoManager::undo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
+void UndoRedoManager::undo()
 {
     if (undoStack.empty()) return;
-
-    painter->end();
 
     // Gets current undo action
     DrawAction undoAction = undoStack.top();
 
-    // Copies previous state pixMap to the main pixMap
-    *spritePixMap = undoAction.previousState.copy();
-
-    painter->begin(spritePixMap);
-
-    // Updates spriteLabel pixMap
-    spriteLabel->setPixmap(spritePixMap->scaled(paintLabelSize, paintLabelSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    *undoAction.framePixmapPtr = undoAction.previousState;
 
     // Removes from undoStack and adds to redoStack
     undoStack.pop();
     redoStack.push(undoAction);
 }
 
-void UndoRedoManager::redo(QPainter *painter, QLabel *spriteLabel, QPixmap *spritePixMap, int paintLabelSize)
+void UndoRedoManager::redo()
 {
     if (redoStack.empty()) return;
-
-    painter->end();
 
     // Gets current redo action
     DrawAction redoAction = redoStack.top();
 
-    // Copies new state pixMap to the main pixMap
-    *spritePixMap = redoAction.newState.copy();
-
-    painter->begin(spritePixMap);
-
-    // Updates spriteLabel pixMap
-    spriteLabel->setPixmap(spritePixMap->scaled(paintLabelSize, paintLabelSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+    *redoAction.framePixmapPtr = redoAction.newState;
 
     // Removes from redoStack and adds to undoStack
     redoStack.pop();
     undoStack.push(redoAction);
 }
 
+void UndoRedoManager::removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr)
+{
+    vector<DrawAction> storedUndoActions;
+
+    // Loops over each stack to find draw actions that contain the removed frame data.
+    // If an draw action is not the removed frame it adds that draw action to a vector to be pushed back.
+    while (!undoStack.empty())
+    {
+        DrawAction undoAction = undoStack.top();
+        undoStack.pop();
+
+        if (undoAction.framePixmapPtr != removedFrameQPixmapPtr)
+        {
+            storedUndoActions.push_back(undoAction);
+        }
+    }
+
+    undoStack = std::stack<DrawAction>();
+    redoStack = std::stack<DrawAction>();
+
+    // Adds draw actions that were stored back to their stacks.
+    for (int i = storedUndoActions.size()-1; i >= 0; i--)
+    {
+        undoStack.push(storedUndoActions[i]);
+    }
+}
