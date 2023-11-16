@@ -100,8 +100,12 @@ void AnimationManager::removeFrame()
 
 void AnimationManager::changeDisplayedFrame(int index)
 {
+    animationFrames[currentFrameIndex].uiElement->setStyleSheet("");
+
     currentFrameIndex = index;
     spriteCanvas->changePixmap(animationFrames[index].animationPixmap);
+
+    animationFrames[currentFrameIndex].uiElement->setStyleSheet("QFrame {border: 10px solid;}");
 }
 
 void AnimationManager::updateFramePreviewElements()
