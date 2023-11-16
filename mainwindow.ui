@@ -47,8 +47,9 @@
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">QFrame {
+         <string notr="true">QFrame#animationFramesPanel {
 background-color:lightgray;
+border-radius:15px;
 }</string>
         </property>
         <property name="frameShape">
@@ -57,59 +58,54 @@ background-color:lightgray;
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="geometry">
-          <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>241</width>
-           <height>591</height>
-          </rect>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>239</width>
-            <height>589</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4"/>
-         </widget>
-        </widget>
-        <widget class="QPushButton" name="addFrameBtn">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>610</y>
-           <width>111</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Add Frame</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="removeFrameBtn">
-         <property name="geometry">
-          <rect>
-           <x>130</x>
-           <y>610</y>
-           <width>111</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Remove Frame</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0" colspan="2">
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="styleSheet">
+            <string notr="true">QWidget#scrollArea {
+border-radius:15px;
+background-color:gray;
+}
+QWidget#scrollAreaWidgetContents {
+border-radius:15px;
+background-color:gray;
+}
+</string>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>229</width>
+              <height>582</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4"/>
+           </widget>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="addFrameBtn">
+           <property name="text">
+            <string>Add Frame</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="removeFrameBtn">
+           <property name="text">
+            <string>Remove Frame</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -182,6 +178,12 @@ background-color:lightgray;
       </item>
       <item>
        <widget class="QFrame" name="rightPanel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>250</width>
@@ -190,7 +192,7 @@ background-color:lightgray;
         </property>
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>250</width>
           <height>640</height>
          </size>
         </property>
@@ -200,345 +202,293 @@ background-color:lightgray;
         <property name="styleSheet">
          <string notr="true">QFrame {
 background-color:lightgray;
+border-radius:15px;
 }</string>
         </property>
-        <widget class="QWidget" name="verticalLayoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>-1</x>
-           <y>-1</y>
-           <width>241</width>
-           <height>641</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <property name="spacing">
-           <number>10</number>
-          </property>
-          <property name="leftMargin">
-           <number>15</number>
-          </property>
-          <property name="topMargin">
-           <number>15</number>
-          </property>
-          <property name="bottomMargin">
-           <number>15</number>
-          </property>
-          <item>
-           <widget class="QFrame" name="toolsFrame">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QFrame {
-background-color:gray;
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QPushButton" name="startPreviewButton">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>20</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Start Preview</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="switchSizeButton">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>60</y>
-               <width>131</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Preview Real Size</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="stopPreviewButton">
-             <property name="geometry">
-              <rect>
-               <x>130</x>
-               <y>20</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Stop Preview</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="OneFPSButton">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>190</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>1 FPS</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="TenFPSButton">
-             <property name="geometry">
-              <rect>
-               <x>130</x>
-               <y>190</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>10 FPS</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="TwentyFPSButton">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>250</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>20 FPS</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="ThirtyFPSButton">
-             <property name="geometry">
-              <rect>
-               <x>130</x>
-               <y>250</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>30 FPS</string>
-             </property>
-            </widget>
-            <widget class="QSlider" name="frameSlider">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>280</y>
-               <width>160</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>60</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-            <widget class="QLabel" name="FPSText">
-             <property name="geometry">
-              <rect>
-               <x>170</x>
-               <y>275</y>
-               <width>51</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>16</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>1</string>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QFrame" name="colorPickerFrame">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QFrame {
-background-color:gray;
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QLabel" name="colorPanelLabel">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>109</y>
-               <width>225</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Color Picker Panel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="colorBtn">
-             <property name="geometry">
-              <rect>
-               <x>7</x>
-               <y>117</y>
-               <width>211</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Change Color</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="eraseToolButton">
-             <property name="geometry">
-              <rect>
-               <x>7</x>
-               <y>80</y>
-               <width>211</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Erase</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="paintBucketToolButton">
-             <property name="geometry">
-              <rect>
-               <x>7</x>
-               <y>48</y>
-               <width>211</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Paint Bucket</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="brushToolButton">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="toolsFrame">
              <property name="enabled">
               <bool>true</bool>
              </property>
-             <property name="geometry">
-              <rect>
-               <x>7</x>
-               <y>16</y>
-               <width>211</width>
-               <height>24</height>
-              </rect>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QFrame {
+background-color:gray;
+border-radius:15px;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="2" column="0" colspan="2">
+               <widget class="QPushButton" name="switchSizeButton">
+                <property name="text">
+                 <string>Preview Real Size</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="TwentyFPSButton">
+                <property name="text">
+                 <string>20 FPS</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="ThirtyFPSButton">
+                <property name="text">
+                 <string>30 FPS</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QLabel" name="label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Sama Devanagari</family>
+                  <pointsize>16</pointsize>
+                  <bold>true</bold>
+                  <underline>true</underline>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QFrame {color:lightgray}</string>
+                </property>
+                <property name="text">
+                 <string>Animation Playback</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="OneFPSButton">
+                <property name="text">
+                 <string>1 FPS</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="TenFPSButton">
+                <property name="text">
+                 <string>10 FPS</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="startPreviewButton">
+                <property name="text">
+                 <string>Start Preview</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="stopPreviewButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>Stop Preview</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QSlider" name="frameSlider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>30</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="FPSText">
+                <property name="font">
+                 <font>
+                  <pointsize>20</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>30</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="colorPickerFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QFrame {
+background-color:gray;
+border-radius:15px;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QPushButton" name="brushToolButton">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Brush</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="paintBucketToolButton">
+                <property name="text">
+                 <string>Paint Bucket</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="eraseToolButton">
+                <property name="text">
+                 <string>Erase</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="colorPanelLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="colorBtn">
+                <property name="text">
+                 <string>Change Color</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="undoBtn">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
              </property>
              <property name="text">
-              <string>Brush</string>
+              <string>Undo</string>
              </property>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="undoBtn">
-            <property name="text">
-             <string>Undo</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="redoBtn">
-            <property name="text">
-             <string>Redo</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="clearBtn">
-            <property name="text">
-             <string>Clear</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="redoBtn">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Redo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clearBtn">
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Clear</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -552,7 +502,7 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">

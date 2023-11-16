@@ -63,10 +63,6 @@ private slots:
 
     void on_ThirtyFPSButton_clicked();
 
-    void on_horizontalSlider_actionTriggered(int action);
-
-    void on_horizontalSlider_valueChanged(int value);
-
     void on_frameSlider_valueChanged(int value);
 
 public slots:
@@ -81,6 +77,8 @@ private:
     AnimationManager *animationManager;
     FileSystem *fileSystem;
     AnimationPreview *animationPreview;
+
+    QPushButton *activeToolBtn;
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

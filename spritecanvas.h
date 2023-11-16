@@ -24,6 +24,8 @@ public:
     int spriteCanvasSize;
     QPixmap *spritePixmap;
 
+    bool canDraw;
+
     void changePixmap(QPixmap newPixmap);
 
     void mousePress(QPoint globalMousePos);
@@ -43,6 +45,9 @@ public:
 
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
     void refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize);
+
+    bool mouseOnSpriteCanvas(QPoint globalMousePos);
+
     QLabel *getSpriteCanvas();
 
 signals:
@@ -63,13 +68,9 @@ private:
     // Draws a pixel at a given position
     void drawPixel(QPoint pixelPosition);
     void erasePixel(QPoint pixelPoisiton);
-    bool mouseOnSpriteCanvas(QPoint globalMousePos);
     QPoint getPixelPosition(QPoint mousePos);
 
-    void findAllPaintFillPixels(vector<QPoint> *paintFillPixels,
-                                QPoint currentPixelPos,
-                                QImage spriteImg,
-                                QColor clickedPixelColor);
+    void findAllPaintFillPixels(QPoint currentPixelPos, QColor clickedPixelColor);
 
     bool drawing;
 };

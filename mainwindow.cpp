@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     ui->setupUi(this);
 
     activeTool = new BrushTool();
+    activeToolBtn = ui->brushToolButton;
+    activeToolBtn->setEnabled(false);
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
 
@@ -116,6 +118,10 @@ void MainWindow::on_removeFrameBtn_clicked()
 void MainWindow::on_startPreviewButton_clicked()
 {
     animationPreview->startPreview(animationManager, false);
+    spriteCanvas->canDraw = false;
+
+    ui->frameSlider->setEnabled(false);
+    ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
     ui->TwentyFPSButton->setEnabled(false);
@@ -125,10 +131,13 @@ void MainWindow::on_startPreviewButton_clicked()
 }
 
 
-
-void MainWindow::on_stopPreviewButton_clicked() {
-
+void MainWindow::on_stopPreviewButton_clicked()
+{
     animationPreview->stopPreview();
+    spriteCanvas->canDraw = true;
+
+    ui->frameSlider->setEnabled(true);
+    ui->stopPreviewButton->setEnabled(false);
     ui->OneFPSButton->setEnabled(true);
     ui->TenFPSButton->setEnabled(true);
     ui->TwentyFPSButton->setEnabled(true);
@@ -137,8 +146,13 @@ void MainWindow::on_stopPreviewButton_clicked() {
     ui->switchSizeButton->setEnabled(true);
 }
 
-void MainWindow::on_switchSizeButton_clicked() {
+void MainWindow::on_switchSizeButton_clicked()
+{
     animationPreview->startPreview(animationManager, true);
+    spriteCanvas->canDraw = false;
+
+    ui->frameSlider->setEnabled(false);
+    ui->stopPreviewButton->setEnabled(true);
     ui->OneFPSButton->setEnabled(false);
     ui->TenFPSButton->setEnabled(false);
     ui->TwentyFPSButton->setEnabled(false);
@@ -149,17 +163,29 @@ void MainWindow::on_switchSizeButton_clicked() {
 
 void MainWindow::on_brushToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new BrushTool();
+    activeToolBtn = ui->brushToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_eraseToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new EraseTool();
+    activeToolBtn = ui->eraseToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_paintBucketToolButton_clicked()
 {
+    activeToolBtn->setEnabled(true);
+
     activeTool = new paintTool();
+    activeToolBtn = ui->paintBucketToolButton;
+    activeToolBtn->setEnabled(false);
 }
 
 void MainWindow::on_OneFPSButton_clicked()
@@ -200,13 +226,4 @@ void MainWindow::on_frameSlider_valueChanged(int value)
 
     animationManager->framesPerSecond = value;
     ui->FPSText->setText(QString::number(value));
-}
-
-void MainWindow::on_horizontalSlider_actionTriggered(int action)
-{
-}
-
-
-void MainWindow::on_horizontalSlider_valueChanged(int value)
-{
 }
