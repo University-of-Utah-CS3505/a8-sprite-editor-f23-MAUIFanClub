@@ -18,7 +18,6 @@ StartupWindow::~StartupWindow()
 
 void StartupWindow::on_openProjectButton_clicked()
 {
-    //QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
     MainWindow * x = new MainWindow(nullptr, 2);
     this->close();
     x->show();
