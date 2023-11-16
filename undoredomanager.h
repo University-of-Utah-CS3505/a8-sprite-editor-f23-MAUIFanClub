@@ -13,7 +13,7 @@ class UndoRedoManager
 {
 public:
 	UndoRedoManager();
-	/// \brief The DrawAction struct establishes the valid types of
+	/// \brief The DrawAction struct establishes the possible actions used to manage edits
 	struct DrawAction
 	{
 		FramePreviewUi *framePreviewUi;

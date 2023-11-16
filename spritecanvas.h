@@ -16,22 +16,22 @@ class SpriteCanvas : public QObject
 {
     Q_OBJECT
 public:
-    SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
+	SpriteCanvas(QLabel *spriteCanvas, int spriteSize);
 
-    QPainter painter;
-    QLabel *spriteCanvas;
-    int spriteCanvasSize;
-    QPixmap *spritePixmap;
+	QPainter painter;
+	QLabel *spriteCanvas;
+	int spriteCanvasSize;
+	QPixmap *spritePixmap;
 
-    void changePixmap(QPixmap newPixmap);
+	void changePixmap(QPixmap newPixmap);
 
-    void mousePress(QPoint globalMousePos);
-    void mouseMove(QPoint globalMousePos);
+	void mousePress(QPoint globalMousePos);
+	void mouseMove(QPoint globalMousePos);
 
-    void mousePress(QPoint globalMousePos, bool isDraw);
-    void mouseMove(QPoint globalMousePos, bool isDraw);
+	void mousePress(QPoint globalMousePos, bool isDraw);
+	void mouseMove(QPoint globalMousePos, bool isDraw);
 
-    void mouseRelease();
+	void mouseRelease();
 
     void setPixelColor(QColor color);
     void clearCanvas();

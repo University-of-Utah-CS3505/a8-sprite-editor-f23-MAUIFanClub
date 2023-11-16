@@ -52,20 +52,20 @@ void UndoRedoManager::redo()
 
 void UndoRedoManager::removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr)
 {
-    vector<DrawAction> storedUndoActions;
+	vector<DrawAction> storedUndoActions;
 
-    // Loops over each stack to find draw actions that contain the removed frame data.
-    // If an draw action is not the removed frame it adds that draw action to a vector to be pushed back.
-    while (!undoStack.empty()) {
-        DrawAction undoAction = undoStack.top();
+	// Loops over each stack to find draw actions that contain the removed frame data.
+	// If an draw action is not the removed frame it adds that draw action to a vector to be pushed back.
+	while (!undoStack.empty()) {
+		DrawAction undoAction = undoStack.top();
         undoStack.pop();
 
         if (undoAction.framePixmapPtr != removedFrameQPixmapPtr) {
             storedUndoActions.push_back(undoAction);
         }
-    }
+	}
 
-    undoStack = std::stack<DrawAction>();
+	undoStack = std::stack<DrawAction>();
     redoStack = std::stack<DrawAction>();
 
     // Adds draw actions that were stored back to their stacks.
