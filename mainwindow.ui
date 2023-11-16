@@ -207,7 +207,7 @@ background-color:lightgray;
           <rect>
            <x>-1</x>
            <y>-1</y>
-           <width>251</width>
+           <width>241</width>
            <height>641</height>
           </rect>
          </property>
@@ -364,12 +364,34 @@ background-color:gray;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
+            <widget class="QLabel" name="colorPanelLabel">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>5</y>
+               <width>221</width>
+               <height>141</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Color Picker Panel</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
             <widget class="QPushButton" name="colorBtn">
              <property name="geometry">
               <rect>
                <x>9</x>
                <y>100</y>
-               <width>221</width>
+               <width>211</width>
                <height>24</height>
               </rect>
              </property>

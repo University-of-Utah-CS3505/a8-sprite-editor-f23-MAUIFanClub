@@ -6,10 +6,9 @@ StartupWindow::StartupWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::StartupWindow)
 {
-    connect(this, &StartupWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
     ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
-
+    filesystem = new FileSystem();
 }
 
 StartupWindow::~StartupWindow()
@@ -19,8 +18,10 @@ StartupWindow::~StartupWindow()
 
 void StartupWindow::on_openProjectButton_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
-    emit loadJson(filename);
+    MainWindow * x = new MainWindow(nullptr, 2);
+    this->close();
+    x->show();
+    x->on_actionLoad_triggered();
 }
 
 

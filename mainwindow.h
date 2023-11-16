@@ -53,7 +53,7 @@ private slots:
     void on_removeFrameBtn_clicked();
 
     void on_actionSave_triggered();
-
+public slots:
     void on_actionLoad_triggered();
 
     void on_paintBucketToolButton_clicked();

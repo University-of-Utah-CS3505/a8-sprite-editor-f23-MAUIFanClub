@@ -31,20 +31,12 @@ int FileSystem::loadJson(QString filepath)
 int FileSystem::readSpritefromJson(const QJsonObject &sprite)
 {
     int size = sprite["frameSize"].toInt();
-    int frameCount = sprite["frameCount"].toInt();
 
     QLabel *tempLabel = spriteCanvas->getSpriteCanvas();
     spriteCanvas->refreshSpriteCanvas(tempLabel, size);
-
     animationManager->clearAnimationFrames(size);
-    QScrollArea *tempScroll = animationManager->getFramesPanel();
-
-
-
 
     QJsonArray frameArray = sprite["frames"].toArray();
-
-
 
     for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
     {
@@ -89,7 +81,6 @@ void FileSystem::saveSprite(QString filename, int size)
 
 void FileSystem::writeSpriteToJson(QJsonObject &sprite)
 {
-    sprite["frameCount"] = animationManager->getSize();
     QJsonArray frames;
 
     int frameIndex = 0;
