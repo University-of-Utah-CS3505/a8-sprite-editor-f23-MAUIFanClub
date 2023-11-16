@@ -70,10 +70,7 @@ private:
     void erasePixel(QPoint pixelPoisiton);
     QPoint getPixelPosition(QPoint mousePos);
 
-    void findAllPaintFillPixels(vector<QPoint> *paintFillPixels,
-                                QPoint currentPixelPos,
-                                QImage spriteImg,
-                                QColor clickedPixelColor);
+    void findAllPaintFillPixels(QPoint currentPixelPos, QColor clickedPixelColor);
 
     bool drawing;
 };

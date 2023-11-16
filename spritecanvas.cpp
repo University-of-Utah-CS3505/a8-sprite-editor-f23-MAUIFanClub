@@ -75,52 +75,43 @@ void SpriteCanvas::paintFill(QPoint globalMousePos)
 
     vector<QPoint> paintFillPixels;
 
-    findAllPaintFillPixels(&paintFillPixels, pixelPos, spriteImg, color);
+    QPen p;
+    p.setColor(pixelColor);
+    p.setWidth(1);
+
+    painter.setPen(p);
 
     emit startAction();
 
-    for (int i = 0; i < paintFillPixels.size(); i++) {
-        drawPixel(paintFillPixels[i]);
-    }
+    findAllPaintFillPixels(pixelPos, color);
+
+    // Updates the paintLabel image to the new canvas.
+    spriteCanvas->setPixmap(spritePixmap->scaled(spriteCanvasSize,
+                                                 spriteCanvasSize,
+                                                 Qt::KeepAspectRatio,
+                                                 Qt::FastTransformation));
 
     emit endAction();
     emit updatePreviewUi();
 }
 
-void SpriteCanvas::findAllPaintFillPixels(vector<QPoint> *paintFillPixels,
-                                          QPoint currentPixelPos,
-                                          QImage spriteImg,
-                                          QColor clickedPixelColor)
+void SpriteCanvas::findAllPaintFillPixels(QPoint currentPixelPos, QColor clickedPixelColor)
 {
     if ((currentPixelPos.x() < 0 || currentPixelPos.x() >= spriteSize)
         || (currentPixelPos.y() < 0 || currentPixelPos.y() >= spriteSize))
         return;
 
-    QColor currentPixelColor(spriteImg.pixel(currentPixelPos));
+    QColor currentPixelColor(spritePixmap->toImage().pixel(currentPixelPos));
 
-    if (currentPixelColor != clickedPixelColor
-        || std::find(paintFillPixels->begin(), paintFillPixels->end(), currentPixelPos)
-               != paintFillPixels->end())
+    if (currentPixelColor != clickedPixelColor)
         return;
 
-    paintFillPixels->push_back(currentPixelPos);
+    painter.drawPoint(currentPixelPos);
 
-    findAllPaintFillPixels(paintFillPixels,
-                           QPoint(currentPixelPos.x() + 1, currentPixelPos.y()),
-                           spriteImg,
-                           clickedPixelColor);
-    findAllPaintFillPixels(paintFillPixels,
-                           QPoint(currentPixelPos.x(), currentPixelPos.y() + 1),
-                           spriteImg,
-                           clickedPixelColor);
-    findAllPaintFillPixels(paintFillPixels,
-                           QPoint((currentPixelPos.x() - 1), currentPixelPos.y()),
-                           spriteImg,
-                           clickedPixelColor);
-    findAllPaintFillPixels(paintFillPixels,
-                           QPoint(currentPixelPos.x(), currentPixelPos.y() - 1),
-                           spriteImg,
-                           clickedPixelColor);
+    findAllPaintFillPixels(QPoint(currentPixelPos.x() + 1, currentPixelPos.y()), clickedPixelColor);
+    findAllPaintFillPixels(QPoint(currentPixelPos.x(), currentPixelPos.y() + 1), clickedPixelColor);
+    findAllPaintFillPixels(QPoint((currentPixelPos.x() - 1), currentPixelPos.y()), clickedPixelColor);
+    findAllPaintFillPixels(QPoint(currentPixelPos.x(), currentPixelPos.y() - 1), clickedPixelColor);
 }
 
 void SpriteCanvas::mouseRelease()
