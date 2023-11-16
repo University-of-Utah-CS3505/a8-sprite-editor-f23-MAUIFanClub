@@ -29,6 +29,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         startupwindow.h startupwindow.cpp startupwindow.ui
         setpixelsizewindow.h setpixelsizewindow.cpp setpixelsizewindow.ui
         Images.qrc
+        fileSystem.h
+        fileSystem.cpp
 
 
 

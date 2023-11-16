@@ -11,7 +11,9 @@ MainWindow::MainWindow(QWidget *parent, int spriteSize)
     activeTool = new brushTool();
 
     spriteCanvas = new SpriteCanvas(ui->spriteCanvas, spriteSize);
-    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize);
+
+    animationManager = new AnimationManager(spriteCanvas, ui->scrollArea, spriteSize, true);
+    fileSystem = new FileSystem(animationManager, spriteCanvas);
 
     AnimationPreview* animationPreview = new AnimationPreview(animationManager->framesPerSecond, animationManager->animationFrames, nullptr);
 
@@ -110,5 +112,19 @@ void MainWindow::on_brushToolButton_clicked()
 void MainWindow::on_eraseToolButton_clicked()
 {
     activeTool = new eraseTool();
+}
+
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Choose Sprite"), "C://", "Sprite Editor Project (*.ssp);;");
+    fileSystem->saveSprite(filename, spriteSize);
+}
+
+
+void MainWindow::on_actionLoad_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
+    fileSystem->loadJson(filename);
 }
 

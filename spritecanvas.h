@@ -38,10 +38,15 @@ public:
 
     void displayAnimationFrame(QPixmap *animationFramePixmap, bool actualSize);
 
+    QLabel* getSpriteCanvas();
+
 signals:
     void updatePreviewUi();
     void startAction();
     void endAction();
+
+    void undoAction();
+    void redoAction();
 
 private:
     QColor pixelColor;

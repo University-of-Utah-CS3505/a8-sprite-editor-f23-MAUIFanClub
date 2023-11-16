@@ -6,6 +6,7 @@ StartupWindow::StartupWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::StartupWindow)
 {
+    connect(this, &StartupWindow::loadJson, &filesystem, &FileSystem::loadJson);
     ui->setupUi(this);
     ui->verticalLayout_2->setAlignment(Qt::AlignHCenter);
 
@@ -18,7 +19,8 @@ StartupWindow::~StartupWindow()
 
 void StartupWindow::on_openProjectButton_clicked()
 {
-    // Should open up existing project
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
+    emit loadJson(filename);
 }
 
 

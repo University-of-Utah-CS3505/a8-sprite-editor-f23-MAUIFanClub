@@ -31,7 +31,6 @@ void SpriteCanvas::mousePress(QPoint globalMousePos, bool isDraw)
     {
         erasePixel(getPixelPosition(localMousePos));
     }
-
 }
 
 void SpriteCanvas::mouseMove(QPoint globalMousePos, bool isDraw)
@@ -47,7 +46,6 @@ void SpriteCanvas::mouseMove(QPoint globalMousePos, bool isDraw)
     {
         erasePixel(getPixelPosition(localMousePos));
     }
-
 }
 
 void SpriteCanvas::mouseRelease()
@@ -151,4 +149,9 @@ void SpriteCanvas::displayAnimationFrame(QPixmap *animationFramePixmap, bool act
         spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteSize, spriteSize, Qt::KeepAspectRatio, Qt::FastTransformation));
     else
         spriteCanvas->setPixmap(animationFramePixmap->scaled(spriteCanvasSize, spriteCanvasSize, Qt::KeepAspectRatio, Qt::FastTransformation));
+}
+
+QLabel *SpriteCanvas::getSpriteCanvas()
+{
+    return spriteCanvas;
 }
