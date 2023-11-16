@@ -15,6 +15,7 @@ SpriteCanvas::SpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 }
 void SpriteCanvas::refreshSpriteCanvas(QLabel *spriteCanvas, int spriteSize)
 {
+    qDebug() << spriteSize;
     spriteCanvasSize = spriteCanvas->width();
     this->spriteSize = spriteSize;
 

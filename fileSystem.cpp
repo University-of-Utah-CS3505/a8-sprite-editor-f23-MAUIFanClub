@@ -16,19 +16,19 @@ FileSystem& FileSystem::operator= (FileSystem other)
     return *this;
 }
 
-void FileSystem::loadJson(QString filepath)
+int FileSystem::loadJson(QString filepath)
 {
     QFile loadFile(filepath);
     if(!loadFile.open(QIODevice::ReadOnly))
     {
         qWarning("Could not open file.");
-        return;
+        return 0;
     }
     QByteArray loadData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(loadData));
-    readSpritefromJson(loadDoc.object());
+    return readSpritefromJson(loadDoc.object());
 }
-void FileSystem::readSpritefromJson(const QJsonObject &sprite)
+int FileSystem::readSpritefromJson(const QJsonObject &sprite)
 {
     int size = sprite["frameSize"].toInt();
     int frameCount = sprite["frameCount"].toInt();
@@ -36,9 +36,9 @@ void FileSystem::readSpritefromJson(const QJsonObject &sprite)
     QLabel *tempLabel = spriteCanvas->getSpriteCanvas();
     spriteCanvas->refreshSpriteCanvas(tempLabel, size);
 
-    animationManager->clearAnimationFrames();
+    animationManager->clearAnimationFrames(size);
     QScrollArea *tempScroll = animationManager->getFramesPanel();
-    animationManager = new AnimationManager(spriteCanvas, tempScroll, size, false);
+
 
 
 
@@ -68,6 +68,7 @@ void FileSystem::readSpritefromJson(const QJsonObject &sprite)
         animationManager->createNewFrame(map);
     }
     animationManager->changeDisplayedFrame(0);
+    return size;
 }
 
 void FileSystem::saveSprite(QString filename, int size)

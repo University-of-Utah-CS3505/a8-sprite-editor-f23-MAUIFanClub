@@ -137,8 +137,9 @@ QScrollArea *AnimationManager::getFramesPanel()
 {
     return framesPanel;
 }
-void AnimationManager::clearAnimationFrames()
+void AnimationManager::clearAnimationFrames(int size)
 {
+    spriteSize = size;
     for(int i = 0; i < animationFrames.size(); i++)
     {
         removeFrame();
@@ -150,4 +151,6 @@ void AnimationManager::clearAnimationFrames()
     delete af->uiElement;
 
     animationFrames.pop_back();
+    delete undoRedoManager;
+    undoRedoManager = new UndoRedoManager();
 }

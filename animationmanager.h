@@ -35,7 +35,7 @@ public:
     void redoAction();
 
     int getSize();
-    void clearAnimationFrames();
+    void clearAnimationFrames(int);
     QScrollArea *getFramesPanel();
 signals:
 

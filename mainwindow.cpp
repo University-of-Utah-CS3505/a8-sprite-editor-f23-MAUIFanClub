@@ -40,7 +40,7 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionLoad_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", "Sprite Editor Project (*.ssp);;");
-    fileSystem->loadJson(filename);
+    spriteSize = fileSystem->loadJson(filename);
 }
 
 /* -- Mouse Events -- */

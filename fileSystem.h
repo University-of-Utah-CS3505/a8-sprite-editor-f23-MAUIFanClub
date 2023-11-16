@@ -19,7 +19,7 @@ public:
     FileSystem& operator= (FileSystem other);
 
 public slots:
-    void loadJson(QString filepath);
+    int loadJson(QString filepath);
     void saveSprite(QString filename, int size);
 signals:
 
@@ -27,7 +27,7 @@ private:
     AnimationManager* animationManager;
     SpriteCanvas* spriteCanvas;
     void writeSpriteToJson(QJsonObject &sprite);
-    void readSpritefromJson(const QJsonObject &sprite);
+    int readSpritefromJson(const QJsonObject &sprite);
     void writeFrameToJson(QJsonObject &frame, QPixmap pixmap, int index);
 };
 
