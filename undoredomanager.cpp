@@ -1,12 +1,12 @@
 #include "undoredomanager.h"
-#include <QDebug>
 
-UndoRedoManager::UndoRedoManager() { }
+UndoRedoManager::UndoRedoManager() {}
 
-void UndoRedoManager::startAction(QPixmap* framePixmapPtr, QPixmap oldPixmap)
+void UndoRedoManager::startAction(QPixmap *framePixmapPtr, QPixmap oldPixmap)
 {
     // Clears redoStack if it contains actions
-    if (!redoStack.empty()) redoStack = std::stack<DrawAction>();
+    if (!redoStack.empty())
+        redoStack = std::stack<DrawAction>();
 
     currentAction.framePixmapPtr = framePixmapPtr;
     currentAction.previousState = oldPixmap.copy();
@@ -22,7 +22,8 @@ void UndoRedoManager::endAction(QPixmap newPixmap)
 
 void UndoRedoManager::undo()
 {
-    if (undoStack.empty()) return;
+    if (undoStack.empty())
+        return;
 
     // Gets current undo action
     DrawAction undoAction = undoStack.top();
@@ -36,7 +37,8 @@ void UndoRedoManager::undo()
 
 void UndoRedoManager::redo()
 {
-    if (redoStack.empty()) return;
+    if (redoStack.empty())
+        return;
 
     // Gets current redo action
     DrawAction redoAction = redoStack.top();
@@ -54,13 +56,11 @@ void UndoRedoManager::removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr)
 
     // Loops over each stack to find draw actions that contain the removed frame data.
     // If an draw action is not the removed frame it adds that draw action to a vector to be pushed back.
-    while (!undoStack.empty())
-    {
+    while (!undoStack.empty()) {
         DrawAction undoAction = undoStack.top();
         undoStack.pop();
 
-        if (undoAction.framePixmapPtr != removedFrameQPixmapPtr)
-        {
+        if (undoAction.framePixmapPtr != removedFrameQPixmapPtr) {
             storedUndoActions.push_back(undoAction);
         }
     }
@@ -69,8 +69,7 @@ void UndoRedoManager::removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr)
     redoStack = std::stack<DrawAction>();
 
     // Adds draw actions that were stored back to their stacks.
-    for (int i = storedUndoActions.size()-1; i >= 0; i--)
-    {
+    for (int i = storedUndoActions.size() - 1; i >= 0; i--) {
         undoStack.push(storedUndoActions[i]);
     }
 }

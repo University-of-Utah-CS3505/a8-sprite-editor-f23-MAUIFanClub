@@ -6,7 +6,7 @@ class paintTool : public Tool_Parent
 {
 public:
     paintTool();
-    void useTool(QMouseEvent *event, SpriteCanvas* canvas, bool isHeldDown);
+    void useTool(QMouseEvent *event, SpriteCanvas *canvas, bool isHeldDown);
 };
 
 #endif // PAINTTOOL_H

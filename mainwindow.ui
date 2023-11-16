@@ -272,19 +272,6 @@ background-color:gray;
               <string>Switch Size</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="eraseToolButton">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>270</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Erase</string>
-             </property>
-            </widget>
             <widget class="QPushButton" name="stopPreviewButton">
              <property name="geometry">
               <rect>
@@ -296,35 +283,6 @@ background-color:gray;
              </property>
              <property name="text">
               <string>Stop Preview</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="brushToolButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="geometry">
-              <rect>
-               <x>40</x>
-               <y>240</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Brush</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="paintBucketToolButton">
-             <property name="geometry">
-              <rect>
-               <x>130</x>
-               <y>240</y>
-               <width>80</width>
-               <height>24</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Paint Bucket</string>
              </property>
             </widget>
            </widget>
@@ -367,10 +325,10 @@ background-color:gray;
             <widget class="QLabel" name="colorPanelLabel">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>5</y>
-               <width>221</width>
-               <height>141</height>
+               <x>0</x>
+               <y>109</y>
+               <width>225</width>
+               <height>41</height>
               </rect>
              </property>
              <property name="font">
@@ -389,14 +347,56 @@ background-color:gray;
             <widget class="QPushButton" name="colorBtn">
              <property name="geometry">
               <rect>
-               <x>9</x>
-               <y>100</y>
+               <x>7</x>
+               <y>117</y>
                <width>211</width>
                <height>24</height>
               </rect>
              </property>
              <property name="text">
               <string>Change Color</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="eraseToolButton">
+             <property name="geometry">
+              <rect>
+               <x>7</x>
+               <y>80</y>
+               <width>211</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Erase</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="paintBucketToolButton">
+             <property name="geometry">
+              <rect>
+               <x>7</x>
+               <y>48</y>
+               <width>211</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Paint Bucket</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="brushToolButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>7</x>
+               <y>16</y>
+               <width>211</width>
+               <height>24</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Brush</string>
              </property>
             </widget>
            </widget>
@@ -463,7 +463,7 @@ background-color:gray;
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">

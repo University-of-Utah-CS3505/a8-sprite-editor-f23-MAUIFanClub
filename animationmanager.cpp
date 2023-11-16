@@ -1,12 +1,17 @@
 #include "animationmanager.h"
 
-AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize, bool createFirstFrame) : framesPanel(framesPanel), spriteSize(spriteSize), spriteCanvas(spriteCanvas)
+AnimationManager::AnimationManager(SpriteCanvas *spriteCanvas,
+                                   QScrollArea *framesPanel,
+                                   int spriteSize,
+                                   bool createFirstFrame)
+    : framesPanel(framesPanel)
+    , spriteSize(spriteSize)
+    , spriteCanvas(spriteCanvas)
 {
     undoRedoManager = new UndoRedoManager();
 
     animationFrames = vector<AnimationFrame>(0);
-    if(createFirstFrame)
-    {
+    if (createFirstFrame) {
         createNewFrame();
         changeDisplayedFrame(0);
     }
@@ -27,9 +32,12 @@ void AnimationManager::createNewFrame()
     frameUiElement->setMaximumHeight(128);
     frameUiElement->setMinimumWidth(128);
     frameUiElement->setMaximumWidth(128);
-    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128,128)));
+    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128, 128)));
 
-    QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
+    QObject::connect(frameUiElement,
+                     &FramePreviewUi::clicked,
+                     this,
+                     &AnimationManager::changeDisplayedFrame);
 
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
@@ -47,7 +55,7 @@ void AnimationManager::createNewFrame(QPixmap map)
     int index = animationFrames.size();
 
     QPixmap *animationPixmap = new QPixmap(spriteSize, spriteSize);
-    *animationPixmap= map.copy();
+    *animationPixmap = map.copy();
 
     // Ui Frame Element Creation
     FramePreviewUi *frameUiElement = new FramePreviewUi(index);
@@ -55,9 +63,12 @@ void AnimationManager::createNewFrame(QPixmap map)
     frameUiElement->setMaximumHeight(128);
     frameUiElement->setMinimumWidth(128);
     frameUiElement->setMaximumWidth(128);
-    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128,128)));
+    frameUiElement->setPixmap(animationPixmap->scaled(QSize(128, 128)));
 
-    QObject::connect(frameUiElement, &FramePreviewUi::clicked, this, &AnimationManager::changeDisplayedFrame);
+    QObject::connect(frameUiElement,
+                     &FramePreviewUi::clicked,
+                     this,
+                     &AnimationManager::changeDisplayedFrame);
 
     // Assignment of variables for newFrame
     newFrame.animationPixmap = animationPixmap;
@@ -70,18 +81,19 @@ void AnimationManager::createNewFrame(QPixmap map)
 
 void AnimationManager::removeFrame()
 {
-    if (animationFrames.size() == 1) return;
+    if (animationFrames.size() == 1)
+        return;
 
     undoRedoManager->removedFrameUpdateStacks(animationFrames.back().animationPixmap);
 
-    AnimationFrame *af = &animationFrames[animationFrames.size()-1];
+    AnimationFrame *af = &animationFrames[animationFrames.size() - 1];
 
     framesPanel->widget()->layout()->removeWidget(af->uiElement);
     delete af->uiElement;
 
     animationFrames.pop_back();
 
-    changeDisplayedFrame(animationFrames.size()-1);
+    changeDisplayedFrame(animationFrames.size() - 1);
 }
 
 void AnimationManager::changeDisplayedFrame(int index)
@@ -96,15 +108,16 @@ void AnimationManager::changeDisplayedFrame(int index)
 
 void AnimationManager::updateFramePreviewElements()
 {
-    for (int i = 0; i < animationFrames.size(); i++)
-    {
-        animationFrames[i].uiElement->setPixmap(animationFrames[i].animationPixmap->scaled(QSize(128,128)));
+    for (int i = 0; i < animationFrames.size(); i++) {
+        animationFrames[i].uiElement->setPixmap(
+            animationFrames[i].animationPixmap->scaled(QSize(128, 128)));
     }
 }
 
 void AnimationManager::startAction()
 {
-    undoRedoManager->startAction(animationFrames[currentFrameIndex].animationPixmap, *animationFrames[currentFrameIndex].animationPixmap);
+    undoRedoManager->startAction(animationFrames[currentFrameIndex].animationPixmap,
+                                 *animationFrames[currentFrameIndex].animationPixmap);
 }
 
 void AnimationManager::endAction()
@@ -139,12 +152,10 @@ QScrollArea *AnimationManager::getFramesPanel()
 void AnimationManager::clearAnimationFrames(int size)
 {
     spriteSize = size;
-    for(int i = 0; i < animationFrames.size(); i++)
-    {
+    for (int i = 0; i < animationFrames.size(); i++) {
         removeFrame();
-
     }
-    AnimationFrame *af = &animationFrames[animationFrames.size()-1];
+    AnimationFrame *af = &animationFrames[animationFrames.size() - 1];
 
     framesPanel->widget()->layout()->removeWidget(af->uiElement);
     delete af->uiElement;

@@ -1,13 +1,13 @@
 #ifndef ANIMATIONMANAGER_H
 #define ANIMATIONMANAGER_H
 
-#include <Qpixmap>
 #include <QLabel>
 #include <QScrollArea>
-#include <QVBoxLayout>
 #include <QTimer>
-#include "spritecanvas.h"
+#include <QVBoxLayout>
+#include <Qpixmap>
 #include "framepreviewui.h"
+#include "spritecanvas.h"
 #include "undoredomanager.h"
 
 using std::vector;
@@ -15,7 +15,10 @@ using std::vector;
 class AnimationManager : public QObject
 {
 public:
-    AnimationManager(SpriteCanvas *spriteCanvas, QScrollArea *framesPanel, int spriteSize, bool createFirstFrame);
+    AnimationManager(SpriteCanvas *spriteCanvas,
+                     QScrollArea *framesPanel,
+                     int spriteSize,
+                     bool createFirstFrame);
 
     struct AnimationFrame
     {

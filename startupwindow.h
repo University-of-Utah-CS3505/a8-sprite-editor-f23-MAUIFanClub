@@ -1,11 +1,11 @@
 #ifndef STARTUPWINDOW_H
 #define STARTUPWINDOW_H
 
-#include <QMainWindow>
 #include <QFileDialog>
+#include <QMainWindow>
 #include <QObject>
-#include "fileSystem.h"
 #include "mainwindow.h"
+#include "setpixelsizewindow.h"
 
 namespace Ui {
 class StartupWindow;
@@ -28,7 +28,6 @@ private slots:
 
 private:
     Ui::StartupWindow *ui;
-    FileSystem *filesystem;
 };
 
 #endif // STARTUPWINDOW_H

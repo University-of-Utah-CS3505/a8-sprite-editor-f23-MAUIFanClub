@@ -1,12 +1,12 @@
 #ifndef UNDOREDOMANAGER_H
 #define UNDOREDOMANAGER_H
 
-#include <QPixmap>
-#include <stack>
-#include <QPainter>
+#include <QDebug>
 #include <QLabel>
+#include <QPainter>
+#include <QPixmap>
 #include "framepreviewui.h"
-
+#include <stack>
 using std::vector;
 
 class UndoRedoManager
@@ -22,13 +22,14 @@ public:
         QPixmap previousState;
     };
 
-    void startAction(QPixmap* framePixmapPtr, QPixmap oldPixmap);
+    void startAction(QPixmap *framePixmapPtr, QPixmap oldPixmap);
     void endAction(QPixmap newPixmap);
 
     void undo();
     void redo();
 
     void removedFrameUpdateStacks(QPixmap *removedFrameQPixmapPtr);
+
 private:
     std::stack<DrawAction> undoStack;
     std::stack<DrawAction> redoStack;

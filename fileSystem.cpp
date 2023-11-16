@@ -1,15 +1,14 @@
 #include "fileSystem.h"
-#include "qforeach.h"
-#include <QTextStream>
-FileSystem::FileSystem(AnimationManager* animManager, SpriteCanvas* spriteCanv)
+
+FileSystem::FileSystem(AnimationManager *animManager, SpriteCanvas *spriteCanv)
 {
     animationManager = animManager;
     spriteCanvas = spriteCanv;
 }
 
-FileSystem::FileSystem(){}
+FileSystem::FileSystem() {}
 
-FileSystem& FileSystem::operator= (FileSystem other)
+FileSystem &FileSystem::operator=(FileSystem other)
 {
     std::swap(animationManager, other.animationManager);
     std::swap(spriteCanvas, other.spriteCanvas);
@@ -19,8 +18,7 @@ FileSystem& FileSystem::operator= (FileSystem other)
 int FileSystem::loadJson(QString filepath)
 {
     QFile loadFile(filepath);
-    if(!loadFile.open(QIODevice::ReadOnly))
-    {
+    if (!loadFile.open(QIODevice::ReadOnly)) {
         qWarning("Could not open file.");
         return 0;
     }
@@ -38,16 +36,14 @@ int FileSystem::readSpritefromJson(const QJsonObject &sprite)
 
     QJsonArray frameArray = sprite["frames"].toArray();
 
-    for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
-    {
+    for (int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++) {
         QImage tempImage(size, size, QImage::Format_ARGB32);
 
         QJsonObject frameval = frameArray[frameIndex].toObject();
         QString label = QStringLiteral("frame").append(QString::number(frameIndex));
         QJsonArray framevalues = frameval[label].toArray();
 
-        foreach(const QJsonValue &v, framevalues)
-        {
+        foreach (const QJsonValue &v, framevalues) {
             QJsonObject value = v.toObject();
             tempImage.setPixelColor(value["x"].toInt(),
                                     value["y"].toInt(),
@@ -66,8 +62,7 @@ int FileSystem::readSpritefromJson(const QJsonObject &sprite)
 void FileSystem::saveSprite(QString filename, int size)
 {
     QFile saveFile(filename);
-    if(!saveFile.open(QIODevice::WriteOnly))
-    {
+    if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning("Could not save file.");
         return;
     }
@@ -84,7 +79,7 @@ void FileSystem::writeSpriteToJson(QJsonObject &sprite)
     QJsonArray frames;
 
     int frameIndex = 0;
-    foreach(AnimationManager::AnimationFrame frame, animationManager->animationFrames){
+    foreach (AnimationManager::AnimationFrame frame, animationManager->animationFrames) {
         QJsonObject frameObject;
         writeFrameToJson(frameObject, *frame.animationPixmap, frameIndex);
         frames.append(frameObject);
